@@ -1,0 +1,49 @@
+---
+title: "Title"
+format: #docx
+    tandf-pdf:
+      keep-tex: true  
+    tandf-html: default
+author:
+  - name: Sultana Mubarika Rahman Chowdhury
+    affiliations:
+      - ref: biostat
+    orcid: 
+    email: schow034@fiu.edu
+  - name: B.M Golam Kibria
+    affiliations:
+      - ref: stat
+affiliations:
+  - id: biostat
+    name: Florida International University
+    department: Biosatistics Department
+    address: FIU
+    city: Miami, Fl
+    country: USA
+    postal-code: 13210
+  - id: stat
+    name: Florida International University
+    department: Department of Mathematics and Statistics
+    address: FIU
+    city: Miami, Fl
+    country: USA
+    postal-code: 13210
+abstract: |
+  Write down the abstract here
+keywords: 
+  - Ridge Regression
+  - Multicolinearity
+bibliography: bibliography.bib  
+---
+
+
+# Introduction
+
+# Ridge Regression
+
+# Simulation Study
+
+# Application
+
+# Discussion and Conclusion 
+
