@@ -126,9 +126,10 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Title},
-  pdfauthor={Sultana Mubarika Rahman Chowdhury; B.M Golam Kibria},
-  pdfkeywords={Ridge Regression, Multicolinearity},
+  pdftitle={Comparison of Confidence Interval in the OLS and Ridge Linear Regression Model: A Comparative study via Simulation},
+  pdfauthor={Sultana Mubarika Rahman Chowdhury; B.M Golam Kibria; Zoran Bursac},
+  pdfkeywords={Multiple Linear Regression, Ridge
+Regression, Multicolinearity},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -136,9 +137,10 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Title}
+\title{Comparison of Confidence Interval in the OLS and Ridge Linear
+Regression Model: A Comparative study via Simulation}
 \author{Sultana Mubarika Rahman Chowdhury$\textsuperscript{1}$, B.M
-Golam Kibria$\textsuperscript{2}$}
+Golam Kibria$\textsuperscript{2}$, Zoran Bursac$\textsuperscript{1}$}
 
 \thanks{CONTACT: Sultana Mubarika Rahman
 Chowdhury. Email: \href{mailto:schow034@fiu.edu}{\nolinkurl{schow034@fiu.edu}}. }
@@ -154,13 +156,27 @@ Write down the abstract here
 \end{abstract}
 \begin{keywords}
 \def\sep{;\ }
-Ridge Regression\sep 
+Multiple Linear Regression\sep Ridge Regression\sep 
 Multicolinearity
 \end{keywords}
 
 \section{Introduction}\label{introduction}
 
-\section{Ridge Regression}\label{ridge-regression}
+One of the key assumption of the widely used multiple linear regression
+model is that the predictors need to be independent of each other.
+Violating the assumption of independence results in an issue known as
+multicollinearity. Linear regression maps the relationship between the
+predictors and dependent variable with a linear equation. If X is a n×p
+full rank matrix of predictors and Y is a n × 1 vector of response
+variables the multiple linear regression can be explained as,
+
+\[Y = X \times \beta + \epsilon\], where, \(\beta\) is an p × 1 unknown
+regression paramaters and \[\epsilon\] is the n × 1 vector of error with
+mean zero and equal variance.\\
+\# Statistical Methodology
+
+\subsection{Ridge Regression
+Estimators}\label{ridge-regression-estimators}
 
 \section{Simulation Study}\label{simulation-study}
 

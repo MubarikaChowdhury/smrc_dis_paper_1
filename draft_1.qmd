@@ -1,5 +1,5 @@
 ---
-title: "Title"
+title: "Comparison of Confidence Interval in the OLS and Ridge Linear Regression Model: A Comparative study via Simulation"
 format: #docx
     tandf-pdf:
       keep-tex: true  
@@ -13,37 +13,54 @@ author:
   - name: B.M Golam Kibria
     affiliations:
       - ref: stat
+  - name: Zoran Bursac
+    affiliations:
+      - ref: biostat
 affiliations:
   - id: biostat
     name: Florida International University
     department: Biosatistics Department
-    address: FIU
+    address: 11200 SW 8th St
     city: Miami, Fl
     country: USA
-    postal-code: 13210
+    postal-code: 33199
   - id: stat
     name: Florida International University
     department: Department of Mathematics and Statistics
-    address: FIU
+    address: 11200 SW 8th St 
     city: Miami, Fl
     country: USA
-    postal-code: 13210
+    postal-code: 33199
 abstract: |
   Write down the abstract here
 keywords: 
+  - Multiple Linear Regression
   - Ridge Regression
   - Multicolinearity
 bibliography: bibliography.bib  
 ---
 
-
 # Introduction
 
-# Ridge Regression
+Multiple linear regression maps the relationship between two or more predictors and dependent variable to a linear equation. The aim is to predict the response variable uisng the indepnedent variables. If X is a n×p full rank matrix of predictors and Y is a n × 1 vector of response variables the multiple linear regression can be explained as,
+
+$$Y = X \times \beta + \epsilon$$,
+where, $\beta$ is an p × 1 unknown regression paramaters and $\epsilon$ is the n × 1 vector of error with mean zero and equal variance.
+
+One of the key assumption of the widely used multiple linear regression model is that the predictors need to be independent of each other. Violating the assumption of independence results in an issue known as multicollinearity. Multicollinearity occurs when two or more independent variables are highly correlated with each other. It causes standard error of the coefficient to increase resulting in wide confidence interval and less reliable results. Identifying significant predictors also becomes difficult. 
+ 
+
+
+# Statistical Methodology
+
+## Ridge Regression Estimators
+
+## Confidence Interval
+
+
 
 # Simulation Study
 
 # Application
 
-# Discussion and Conclusion 
-
+# Discussion and Conclusion
