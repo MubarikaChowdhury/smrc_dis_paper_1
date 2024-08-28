@@ -75,6 +75,39 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{orcidlink}
 \makeatletter
@@ -162,27 +195,72 @@ Multicolinearity
 
 \section{Introduction}\label{introduction}
 
+Multiple linear regression maps the relationship between two or more
+predictors and dependent variable to a linear equation. The aim is to
+predict the response variable using the independent variables. If X is a
+n×p full rank matrix of predictors and Y is a n × 1 vector of response
+variables the multiple linear regression can be explained as,
+
+\[Y = X \times \beta + \epsilon, \] where, \(\beta\) is an p × 1 unknown
+regression paramaters and \(\epsilon\) is the n × 1 vector of error with
+mean zero and equal variance.Ordinary Least Square (OLS) method is
+commonly used to estimate the unknown regression parameter. The OLS
+estimate in case of linear regression model is defined as follows,
+
+\[\hat{\beta} = (X^T X)^{-1} X^T y.\]
+
 One of the key assumption of the widely used multiple linear regression
 model is that the predictors need to be independent of each other.
 Violating the assumption of independence results in an issue known as
-multicollinearity. Linear regression maps the relationship between the
-predictors and dependent variable with a linear equation. If X is a n×p
-full rank matrix of predictors and Y is a n × 1 vector of response
-variables the multiple linear regression can be explained as,
+multicollinearity. Multicollinearity occurs when two or more independent
+variables are highly correlated with each other. It causes standard
+error of the OLS coefficient to increase resulting in wide confidence
+intervals and less reliable results. Identifying and interpreting
+significant predictors also becomes difficult. As the field of study
+progressed, researchers developed a number of methods to address
+presence of multicollinearity in data. Ridge regression (Hoerl and
+Kennard 1970), Lasso,
 
-\[Y = X \times \beta + \epsilon\], where, \(\beta\) is an p × 1 unknown
-regression paramaters and \[\epsilon\] is the n × 1 vector of error with
-mean zero and equal variance.\\
-\# Statistical Methodology
+Ridge regression is one of the methods proposed by Hoerl and Kennard
+(1970) that mitigates the effects of multicollinearity by introducing an
+amount of bias in to the model.
+
+para about differnt techniques,
+
+para about ridge
+
+para about CI
+
+para about Aim
+
+Note:
+
+\section{Statistical Methodology}\label{statistical-methodology}
 
 \subsection{Ridge Regression
 Estimators}\label{ridge-regression-estimators}
+
+\subsection{Confidence Interval}\label{confidence-interval}
+
+\subsection{CI for Ridge regression}\label{ci-for-ridge-regression}
 
 \section{Simulation Study}\label{simulation-study}
 
 \section{Application}\label{application}
 
 \section{Discussion and Conclusion}\label{discussion-and-conclusion}
+
+\section*{Bibliography}\label{bibliography}
+\addcontentsline{toc}{section}{Bibliography}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-hoerl1970ridge}
+Hoerl, Arthur E, and Robert W Kennard. 1970. {``Ridge Regression: Biased
+Estimation for Nonorthogonal Problems.''} \emph{Technometrics} 12 (1):
+55--67.
+
+\end{CSLReferences}
 
 
 
