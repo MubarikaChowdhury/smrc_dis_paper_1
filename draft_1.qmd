@@ -10,7 +10,7 @@ author:
       - ref: biostat
     orcid: 
     email: schow034@fiu.edu
-  - name: B.M Golam Kibria
+  - name: B.M. Golam Kibria
     affiliations:
       - ref: stat
   - name: Zoran Bursac
@@ -44,17 +44,37 @@ bibliography: bibliography.bib
 
 Multiple linear regression maps the relationship between two or more predictors and dependent variable to a linear equation. The aim is to predict the response variable using the independent variables. If X is a n×p full rank matrix of predictors and Y is a n × 1 vector of response variables the multiple linear regression can be explained as,
 
-$$Y = X \times \beta + \epsilon, $$
-where, $\beta$ is an p × 1 unknown regression paramaters and $\epsilon$ is the n × 1 vector of error with mean zero and equal variance.Ordinary Least Square (OLS) method is commonly used to estimate the unknown regression parameter. The OLS estimate in case of linear regression model is defined as follows, 
+$$Y = X \times \beta + \epsilon, $$ where, $\beta$ is an p × 1 unknown regression paramaters and $\epsilon$ is the n × 1 vector of error with mean zero and equal variance.Ordinary Least Square (OLS) method is commonly used to estimate the unknown regression parameter. The OLS estimate in case of linear regression model is defined as follows,
 
 $$\hat{\beta} = (X^T X)^{-1} X^T y.$$
 
-One of the key assumption of the widely used multiple linear regression model is that the predictors need to be independent of each other. Violating the assumption of independence 
-results in an issue known as multicollinearity. Multicollinearity occurs when two or more independent variables are highly correlated with each other. It causes standard error of the OLS coefficient to increase resulting in wide confidence intervals and less reliable results. Identifying and interpreting significant predictors also becomes difficult. As the field of study progressed, researchers developed a number of methods to address presence of multicollinearity in data. Ridge regression [@hoerl1970ridge], Lasso, 
+One of the key assumption of the widely used multiple linear regression model is that the predictors need to be independent of each other. Violating the assumption of independence results in an issue known as multicollinearity. Multicollinearity, originally identified by @frisch1934statistical, is the state in which two or more independent variables show a strong correlation with one another. It causes standard error of the OLS estimator to increase resulting in wide confidence intervals and less reliable results. Identifying and interpreting significant predictors also becomes difficult [@saleh2019theory]. Increasing the sample size, eliminating the highly correlated variables, Principal component analysis are some of the ways to avoid multicollinearity but with the risk of losing either valuable information or interpretability. 
+
+As the field of study progressed, researchers developed a number of methods to perform better than OLS in presence of multicollinearity in data by introducing bias to the estimator to gain smaller variance. Ridge regression [@hoerl1970ridge], Lasso [@tibshirani1996regression], Stein estimator [@stein1956inadmissibility], Modified ridge regression, Liu estimator [@liu1993new], 
+Kibria-Lukman estimator [@kibria2020new] are some them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Ridge regression is one of the methods proposed by @hoerl1970ridge that mitigates the effects of multicollinearity by introducing an amount of bias in to the model.
 
-para about differnt techniques, 
+para about differnt techniques,
 
 para about ridge
 
@@ -62,10 +82,7 @@ para about CI
 
 para about Aim
 
-
-
- 
-Note: 
+Note:
 
 # Statistical Methodology
 
@@ -74,8 +91,6 @@ Note:
 ## Confidence Interval
 
 ## CI for Ridge regression
-
-
 
 # Simulation Study
 
