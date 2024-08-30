@@ -50,8 +50,15 @@ $$\hat{\beta} = (X^T X)^{-1} X^T y.$$
 
 One of the key assumption of the widely used multiple linear regression model is that the predictors need to be independent of each other. Violating the assumption of independence results in an issue known as multicollinearity. Multicollinearity, originally identified by @frisch1934statistical, is the state in which two or more independent variables show a strong correlation with one another. It causes standard error of the OLS estimator to increase resulting in wide confidence intervals and less reliable results. Identifying and interpreting significant predictors also becomes difficult [@saleh2019theory]. Increasing the sample size, eliminating the highly correlated variables, Principal component analysis are some of the ways to avoid multicollinearity but with the risk of losing either valuable information or interpretability. 
 
-As the field of study progressed, researchers developed a number of methods to perform better than OLS in presence of multicollinearity in data by introducing bias to the estimator to gain smaller variance. Ridge regression [@hoerl1970ridge], Lasso [@tibshirani1996regression], Stein estimator [@stein1956inadmissibility], Modified ridge regression, Liu estimator [@liu1993new], 
-Kibria-Lukman estimator [@kibria2020new] are some them.
+As the field of study progressed, researchers developed a number of methods that outperforms OLS in presence of multicollinearity in data by introducing bias to the estimator to gain smaller variance. Ridge regression [@hoerl1970ridge], Lasso [@tibshirani1996regression], Stein estimator [@stein1956inadmissibility], Modified ridge regression, Liu estimator [@liu1993new], Kibria-Lukman estimator [@kibria2020new] are some of them.  Among these, ridge regression has become one of the most popular methods for dealing with multicollinearity, providing a robust substitute for OLS. However, Ridge regression approach requires precise ridge parameter estimation, because the number of parameters, sample size, degree of correlation, and standard error vary greatly in real-world data. As a results numerous ridge parameters estimators has been suggested researchers till date. @mermi2024new in their recent paper presented and compared a total of 366 different ridge parameters estimators. 
+
+Typically, the performance of various ridge settings are compared to OLS based on their mean square error (MSE). Nonetheless, certain unknown characteristics in the model determines when Ridge Regression estimators outperform Least Squares estimators in terms of MSE [@crivelli1995confidence]. However, that does not tell us how well the corresponding ridge regression model performs in terms of finding out significance of the predictors which is one of the key points in regression analysis.
+
+There are two ways by which statistical significance of the independent variables is determined. One is the method of hypothesis testing and the other one is the method of constructing Confidence Interval (CI). On the basis of power of the hypothesis test, a number of comparative studies have been done for ridge regression with various tuning settings [@halawa2000tests, @cule2011significance, @gokpinar2016study @perez2020some]. Nevertheless, when evaluating regression parameters, confidence intervals are preferable to hypothesis testing because they offer a range of plausible values that represent the accuracy, direction and magnitude of the estimate. They provide a more precise grasp of practical significance based on sample size while avoiding the drawbacks of p-values [@nickerson2000null] . In practical fields such as, medical studies investigators are usually interested in determining the size of difference of a measured outcome between groups, rather than a simple indication of whether or not it is statistically significant [@gardner1986confidence]. Therefore, CI's can be considered as more informative and transparent for making decisions.
+
+This research examines the Confidence Intervals of multiple linear ridge regression settings for a number of shrinkage parameter under identical simulation conditions. The comparison is conducted based on the width of the confidence interval and coverage probability. The research might be useful to evaluate if shrinkage has produced more stable and dependable estimates than ordinary least squares (OLS) regression by evaluating the bias and variance reduction in Ridge Regression. We can also determine which tuning parameter gives a high coverage probability with a comparatively narrow indicating higher precision.
+
+The rest of the paper is organized as follows,  
 
 
 
@@ -72,17 +79,13 @@ Kibria-Lukman estimator [@kibria2020new] are some them.
 
 
 
-Ridge regression is one of the methods proposed by @hoerl1970ridge that mitigates the effects of multicollinearity by introducing an amount of bias in to the model.
 
-para about differnt techniques,
 
-para about ridge
 
-para about CI
 
-para about Aim
 
-Note:
+
+
 
 # Statistical Methodology
 
