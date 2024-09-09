@@ -160,7 +160,7 @@
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Comparison of Confidence Interval in the OLS and Ridge Linear Regression Model: A Comparative study via Simulation},
-  pdfauthor={Sultana Mubarika Rahman Chowdhury; B.M Golam Kibria; Zoran Bursac},
+  pdfauthor={Sultana Mubarika Rahman Chowdhury; B.M. Golam Kibria; Zoran Bursac},
   pdfkeywords={Multiple Linear Regression, Ridge
 Regression, Multicolinearity},
   colorlinks=true,
@@ -172,7 +172,7 @@ Regression, Multicolinearity},
 
 \title{Comparison of Confidence Interval in the OLS and Ridge Linear
 Regression Model: A Comparative study via Simulation}
-\author{Sultana Mubarika Rahman Chowdhury$\textsuperscript{1}$, B.M
+\author{Sultana Mubarika Rahman Chowdhury$\textsuperscript{1}$, B.M.
 Golam Kibria$\textsuperscript{2}$, Zoran Bursac$\textsuperscript{1}$}
 
 \thanks{CONTACT: Sultana Mubarika Rahman
@@ -212,28 +212,68 @@ estimate in case of linear regression model is defined as follows,
 One of the key assumption of the widely used multiple linear regression
 model is that the predictors need to be independent of each other.
 Violating the assumption of independence results in an issue known as
-multicollinearity. Multicollinearity occurs when two or more independent
-variables are highly correlated with each other. It causes standard
-error of the OLS coefficient to increase resulting in wide confidence
-intervals and less reliable results. Identifying and interpreting
-significant predictors also becomes difficult. As the field of study
-progressed, researchers developed a number of methods to address
-presence of multicollinearity in data. Ridge regression (Hoerl and
-Kennard 1970), Lasso,
+multicollinearity. Multicollinearity, originally identified by Frisch
+(1934), is the state in which two or more independent variables show a
+strong correlation with one another. It causes standard error of the OLS
+estimator to increase resulting in wide confidence intervals and less
+reliable results. Identifying and interpreting significant predictors
+also becomes difficult (Saleh, Arashi, and Kibria 2019). Increasing the
+sample size, eliminating the highly correlated variables, Principal
+component analysis are some of the ways to avoid multicollinearity but
+with the risk of losing either valuable information or interpretability.
 
-Ridge regression is one of the methods proposed by Hoerl and Kennard
-(1970) that mitigates the effects of multicollinearity by introducing an
-amount of bias in to the model.
+As the field of study progressed, researchers developed a number of
+methods that outperforms OLS in presence of multicollinearity in data by
+introducing bias to the estimator to gain smaller variance. Ridge
+regression (Hoerl and Kennard 1970), Lasso (Tibshirani 1996), Stein
+estimator (Stein et al. 1956), Modified ridge regression, Liu estimator
+(Liu 1993), Kibria-Lukman estimator (Kibria and Lukman 2020) are some of
+them. Among these, ridge regression has become one of the most popular
+methods for dealing with multicollinearity, providing a robust
+substitute for OLS. However, Ridge regression approach requires precise
+ridge parameter estimation, because the number of parameters, sample
+size, degree of correlation, and standard error vary greatly in
+real-world data. As a results numerous ridge parameters estimators has
+been suggested researchers till date. Mermi et al. (2024) in their
+recent paper presented and compared a total of 366 different ridge
+parameters estimators.
 
-para about differnt techniques,
+Typically, the performance of various ridge settings are compared to OLS
+based on their mean square error (MSE). Nonetheless, certain unknown
+characteristics in the model determines when Ridge Regression estimators
+outperform Least Squares estimators in terms of MSE (Crivelli et al.
+1995). However, that does not tell us how well the corresponding ridge
+regression model performs in terms of finding out significance of the
+predictors which is one of the key points in regression analysis.
 
-para about ridge
+There are two ways by which statistical significance of the independent
+variables is determined. One is the method of hypothesis testing and the
+other one is the method of constructing Confidence Interval (CI). On the
+basis of power of the hypothesis test, a number of comparative studies
+have been done for ridge regression with various tuning settings
+Perez-Melo and Kibria (2020). Nevertheless, when evaluating regression
+parameters, confidence intervals are preferable to hypothesis testing
+because they offer a range of plausible values that represent the
+accuracy, direction and magnitude of the estimate. They provide a more
+precise grasp of practical significance based on sample size while
+avoiding the drawbacks of p-values (Nickerson 2000) . In practical
+fields such as, medical studies investigators are usually interested in
+determining the size of difference of a measured outcome between groups,
+rather than a simple indication of whether or not it is statistically
+significant (Gardner and Altman 1986). Therefore, CI's can be considered
+as more informative and transparent for making decisions.
 
-para about CI
+This research examines the Confidence Intervals of multiple linear ridge
+regression settings for a number of shrinkage parameter under identical
+simulation conditions. The comparison is conducted based on the width of
+the confidence interval and coverage probability. The research might be
+useful to evaluate if shrinkage has produced more stable and dependable
+estimates than ordinary least squares (OLS) regression by evaluating the
+bias and variance reduction in Ridge Regression. We can also determine
+which tuning parameter gives a high coverage probability with a
+comparatively narrow indicating higher precision.
 
-para about Aim
-
-Note:
+The rest of the paper is organized as follows,
 
 \section{Statistical Methodology}\label{statistical-methodology}
 
@@ -255,10 +295,82 @@ Estimators}\label{ridge-regression-estimators}
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-crivelli1995confidence}
+Crivelli, Ana, Luis Firinguetti, Rosa Montano, and Margarita Munóz.
+1995. {``Confidence Intervals in Ridge Regression by Bootstrapping the
+Dependent Variable: A Simulation Study.''} \emph{Communications in
+Statistics-Simulation and Computation} 24 (3): 631--52.
+
+\bibitem[\citeproctext]{ref-cule2011significance}
+Cule, Erika, Paolo Vineis, and Maria De Iorio. 2011. {``Significance
+Testing in Ridge Regression for Genetic Data.''} \emph{BMC
+Bioinformatics} 12: 1--15.
+
+\bibitem[\citeproctext]{ref-frisch1934statistical}
+Frisch, Ragnar. 1934. {``Statistical Confluence Analysis by Means of
+Complete Regression Systems.''} \emph{(No Title)}.
+
+\bibitem[\citeproctext]{ref-gardner1986confidence}
+Gardner, Martin J, and Douglas G Altman. 1986. {``Confidence Intervals
+Rather Than p Values: Estimation Rather Than Hypothesis Testing.''}
+\emph{Br Med J (Clin Res Ed)} 292 (6522): 746--50.
+
+\bibitem[\citeproctext]{ref-gokpinar2016study}
+Gökpınar, Esra, and Meral Ebegil. 2016. {``A Study on Tests of
+Hypothesis Based on Ridge Estimator.''} \emph{Gazi University Journal of
+Science} 29 (4): 769--81.
+
+\bibitem[\citeproctext]{ref-halawa2000tests}
+Halawa, AM, and MY El Bassiouni. 2000. {``Tests of Regression
+Coefficients Under Ridge Regression Models.''} \emph{Journal of
+Statistical Computation and Simulation} 65 (1-4): 341--56.
+
 \bibitem[\citeproctext]{ref-hoerl1970ridge}
 Hoerl, Arthur E, and Robert W Kennard. 1970. {``Ridge Regression: Biased
 Estimation for Nonorthogonal Problems.''} \emph{Technometrics} 12 (1):
 55--67.
+
+\bibitem[\citeproctext]{ref-kibria2020new}
+Kibria, BM Golam, and Adewale F Lukman. 2020. {``A New Ridge-Type
+Estimator for the Linear Regression Model: Simulations and
+Applications.''} \emph{Scientifica} 2020 (1): 9758378.
+
+\bibitem[\citeproctext]{ref-liu1993new}
+Liu, Kejian. 1993. {``A New Class of Biased Estimate in Linear
+Regression.''} \emph{Communications in Statistics - Theory and Methods}
+22 (2): 393--402. \url{https://doi.org/10.1080/03610929308831027}.
+
+\bibitem[\citeproctext]{ref-mermi2024new}
+Mermi, Selman, Özge Akkuş, Atila Göktaş, and Necla Gündüz. 2024. {``A
+New Robust Ridge Parameter Estimator Having No Outlier and Ensuring
+Normality for Linear Regression Model.''} \emph{Journal of Radiation
+Research and Applied Sciences} 17 (1): 100788.
+
+\bibitem[\citeproctext]{ref-nickerson2000null}
+Nickerson, Raymond S. 2000. {``Null Hypothesis Significance Testing: A
+Review of an Old and Continuing Controversy.''} \emph{Psychological
+Methods} 5 (2): 241.
+
+\bibitem[\citeproctext]{ref-perez2020some}
+Perez-Melo, Sergio, and BM Golam Kibria. 2020. {``On Some Test
+Statistics for Testing the Regression Coefficients in Presence of
+Multicollinearity: A Simulation Study.''} \emph{Stats} 3 (1): 40--55.
+
+\bibitem[\citeproctext]{ref-saleh2019theory}
+Saleh, AK Md Ehsanes, Mohammad Arashi, and BM Golam Kibria. 2019.
+\emph{Theory of Ridge Regression Estimation with Applications}. John
+Wiley \& Sons.
+
+\bibitem[\citeproctext]{ref-stein1956inadmissibility}
+Stein, Charles et al. 1956. {``Inadmissibility of the Usual Estimator
+for the Mean of a Multivariate Normal Distribution.''} In
+\emph{Proceedings of the Third Berkeley Symposium on Mathematical
+Statistics and Probability}, 1:197--206. 1.
+
+\bibitem[\citeproctext]{ref-tibshirani1996regression}
+Tibshirani, Robert. 1996. {``Regression Shrinkage and Selection via the
+Lasso.''} \emph{Journal of the Royal Statistical Society Series B:
+Statistical Methodology} 58 (1): 267--88.
 
 \end{CSLReferences}
 
