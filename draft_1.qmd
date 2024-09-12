@@ -68,13 +68,40 @@ $$ {#eq-3} where, $t_{\alpha/2, n-k}$ is the critical value for t- distribution 
 
 ## Confidence Interval for Ridge Regression Estimators
 
-The canonical form of model @eq-1 is written as, $$ y = Z\alpha + \epsilon, $$ {#eq-4} where, $Z = X Q$, $\alpha = Q^T \beta$ assuming $Q$ is a $p \times p$ orthogonal matrix, and $Z^T Z = \Lambda$ is a $p \times p$ diagonal matrix with eigen values ($\lambda_i$) as diagonal elements. The ridge regression estimator with k as the shrinkage parameter proposed by @hoerl1970ridge for $\alpha$ is written as, $$ \hat{\alpha} (k) = (Z^TZ + kI_p)^{-1} Z^Ty = W\hat{\alpha} $$ {#eq-5} where, $W = [I_p + k C^{-1}]^{-1}$ is the ridge regression estimator and $I_p$ is a identity matrix of order p. When there is multicollinearity among the regressors, $X^TX$ becomes singular or nearly singular, which means it cannot be inverted. Introducing a small positive number $kI_p$ to the diagonal elements making it always invertible thus it will always have a unique solution.
+The canonical form of model @eq-1 is written as, $$ y = Z\alpha + \epsilon, $$ {#eq-4} where, $Z = X Q$, $\alpha = Q^T \beta$ assuming $Q$ is a $p \times p$ orthogonal matrix, and $Z^T Z = \Lambda$ is a $p \times p$ diagonal matrix with eigen values ($\lambda_i$) as diagonal elements. The ridge regression estimator with k as the shrinkage parameter proposed by @hoerl1970ridge for $\alpha$ is written as, $$ \hat{\alpha} (k) = (Z^TZ + kI_p)^{-1} Z^Ty = W\hat{\alpha} ;     k \geq 0$$ {#eq-5} where, $W = [I_p + k C^{-1}]^{-1}$ is the ridge regression estimator, $k = diag(k_1, k_2,..., k_p)$ and $I_p$ is a identity matrix of order p. When there is multicollinearity among the regressors, $X^TX$ becomes singular or nearly singular, which means it cannot be inverted. Introducing a small positive number $kI_p$ to the diagonal elements making it always invertible thus it will always have a unique solution. The parameter k is known as the ridge parameter or shrinkage parameter.
 
-## Ridge regression parameters
+------- discuss whether to add different confidence interval
 
-CI for ridge,
+## Ridge Regression Parameters
 
-different k's
+In ridge regression the shrinkage parameter is estimated from the observed data. We must identify a ridge regression parameter that yields a less biased and consistent regression coefficient and has a smaller MSE value than the OLS estimator. Based on their performance in the MSE comparison with OLS, as reported in the literature, 18 distinct ridge regression parameters are chosen to be investigated in this research. This section gives the explanation and formulas of the parameters used in our simulation study.
+
+In the original paper @hoerl1970ridge suggested a parameter, $$\hat{k_i} = \frac{\hat{\sigma}^2}{\hat{\alpha_i}^2}$$ that minimizes the MSE of $\hat{\alpha}(k)$ defined by,
+
+$$\text{MSE}(\hat{\alpha}(k)) = \sigma^2 \sum_{i=1}^{p} \frac{\lambda_i}{(\lambda_i + \hat{k_i})^2} + \sum_{i=1}^{p} \frac{\hat{k_i}^2 \hat{\alpha_i}^2}{(\lambda_i + \hat{k_i})^2}$$ {#eq-7}
+
+here, $\hat{\sigma}^2 = \frac{\sum_{i=1}^{n} \hat{e}_i^2}{n - p}$
+
+The selected ridge parameters are listed below,
+
+@hocking1976class proposed k to be,
+$$k_1 = \frac{\hat\sigma^2_{} \sum(\hat\alpha_j^2 \lambda_j^2)}{(\sum(\hat\alpha_j^2 \lambda_j))^2}$$
+@hoerl1970ridge suggested k to be, $$ k_2 = \frac{\hat\sigma^2_{}}{\max(\hat\alpha^2)}$$
+@thisted1976ridge recommended k to be, $$k_3 = \frac{(p - 2) \hat{\sigma}^2_{}}{(\sum_{j=1}^{p} \hat{\beta}_{\text{j}})^2}$$
+@hoerl1976ridge suggested k to be, $$k_4 = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$
+@kibria2003performance proposed k to be, $$k_5 = \text{median}\left(\frac{\hat{\sigma}^2_{}}{\hat{\alpha}^2{\text{j}}}\right)$$
+@khalaf2005choosing recommended k to be, $$k_6 = \frac{\lambda_{\text{max}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \hat{\lambda}_{\text{max}} \hat{\alpha}^2_{\text{max}}}$$
+@alkhamisi2006some  k to be, $k_7 = \max(m_j)$ and $k_8 = \text{median}(m_j)$ where, $$m_j = \frac{\lambda_{\text{j}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \lambda_{\text{j}} \hat{\alpha}^2_{\text{j}}}$$
+@schaffer1984higher suggested k to be, $$k_9 = \frac{1}{\hat{\alpha}^2_{\text{max}}}$$
+@asar2014modified advocated for the following k's $$k_{10} = \frac{p^2 \hat{\sigma}^2_{}}{\lambda^2_{\text{max}}\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$
+$$k_{11} = \frac{p^3 \hat{\sigma}^2_{}}{\lambda^3_{\text{max}} \sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$
+$$k_{12} = \frac{p \hat{\sigma}^2_{}}{\lambda_{\text{max}}^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$
+$$k_{13} = \frac{p^2 \hat{\sigma}^2_{}}{\left(\sum_{j=1}^{p} \sqrt{\lambda}\right)^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$
+@nomura1988almost suggested \* check if correct $$k_{14} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{1 + (1 + \lambda \sqrt{\frac{\hat{\alpha}^2_{\text{j}}}{\hat{\sigma}^2_{}}})} \right)}$$
+@dorugade2014new advocated for the following k's $$k_{15} = \text{median}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$
+$$k_{16} = \text{harmonic.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$
+$$k_{17} = \text{geometric.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$
+@batah2009ridge proposed the k to be, $$k_{18} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{\sqrt{\frac{\hat{\alpha}^4_{\text{j}} \lambda^2_{\text{j}}}{4 \hat{\sigma}^4_{}} + \frac{6 \hat{\alpha}^2  \lambda_{\text{j}}}{\hat{\sigma}^2_{}}} - \frac{\hat{\alpha}^2_{\text{j}} \lambda_{\text{j}}}{2 \hat{\sigma}^2_{}}} \right)}$$ )
 
 # Simulation Study
 
