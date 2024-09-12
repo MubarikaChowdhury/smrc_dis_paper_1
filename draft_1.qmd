@@ -105,6 +105,15 @@ $$k_{17} = \text{geometric.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{
 
 # Simulation Study
 
+
+- how data was created
+- how many model were used
+- distribution of data and error
+- complete model
+- n,p, rho, sigma values
+- software used
+- 
+
 # Application
 
 # Discussion and Conclusion
