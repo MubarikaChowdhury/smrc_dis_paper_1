@@ -52,8 +52,6 @@ The inference for ridge regression based on confidence interval has not received
 
 This research examines the Confidence Intervals of multiple linear ridge regression settings for a number of shrinkage parameter under identical simulation conditions. The comparison is conducted based on the width of the confidence interval and coverage probability. The research might be useful to evaluate if shrinkage has produced more stable and dependable estimates than ordinary least squares (OLS) regression by evaluating the bias and variance reduction in Ridge Regression. We can also determine which tuning parameter gives a high coverage probability with a comparatively narrow indicating higher precision.
 
---------\[ aim needs to be updated based on discussion\]
-
 The rest of the paper is organized as follows,
 
 ------ \[write about different sections.\]
@@ -62,7 +60,7 @@ The rest of the paper is organized as follows,
 
 ## Confidence Interval for OLS Estimators
 
-The OLS estimator $\hat{\beta}$ is an unbiased estimator of the ${\beta}$. Under the assumptions od the classical linear regression model the OLS estimator $\hat{\beta}$ is calculated by minimizing the sum of square of the residuals. To measure the variability of the estimate across samples the standard error is calculated as follows, $$ \text{SE}(\hat{\beta}) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}},
+The OLS estimator $\hat{\beta}$ is an unbiased estimator of the ${\beta}$. Under the assumptions of the classical linear regression model the OLS estimator $\hat{\beta}$ is calculated by minimizing the sum of square of the residuals. To measure the variability of the estimate across samples the standard error is calculated as follows, $$ \text{SE}(\hat{\beta}) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}},
 $$ {#eq-2} where, $\sigma^2$ is the variance of the error term. Hence the confidence interval for $\hat{\beta}$ is given as, $$ \hat{\beta} \pm t_{\alpha/2, n-k} \cdot \text{SE}(\hat{\beta})
 $$ {#eq-3} where, $t_{\alpha/2, n-k}$ is the critical value for t- distribution with $n - k$ degrees of freedom for $n$ number of samples and $k$ predictors.
 
@@ -70,7 +68,17 @@ $$ {#eq-3} where, $t_{\alpha/2, n-k}$ is the critical value for t- distribution 
 
 The canonical form of model @eq-1 is written as, $$ y = Z\alpha + \epsilon, $$ {#eq-4} where, $Z = X Q$, $\alpha = Q^T \beta$ assuming $Q$ is a $p \times p$ orthogonal matrix, and $Z^T Z = \Lambda$ is a $p \times p$ diagonal matrix with eigen values ($\lambda_i$) as diagonal elements. The ridge regression estimator with k as the shrinkage parameter proposed by @hoerl1970ridge for $\alpha$ is written as, $$ \hat{\alpha} (k) = (Z^TZ + kI_p)^{-1} Z^Ty = W\hat{\alpha} ;     k \geq 0$$ {#eq-5} where, $W = [I_p + k C^{-1}]^{-1}$ is the ridge regression estimator, $k = diag(k_1, k_2,..., k_p)$ and $I_p$ is a identity matrix of order p. When there is multicollinearity among the regressors, $X^TX$ becomes singular or nearly singular, which means it cannot be inverted. Introducing a small positive number $kI_p$ to the diagonal elements making it always invertible thus it will always have a unique solution. The parameter k is known as the ridge parameter or shrinkage parameter.
 
-------- discuss whether to add different confidence interval
+The standard error for Ridge regression is calculated after adjusting for the bias from the regularization parameter, The varinace-covariance matrix of the Ridge Regression estimator is,
+
+$$
+\text{Var}(\hat{\beta}_{\text{ridge}}) = \sigma^2 (Z^T Z + \lambda I)^{-1} Z^T Z (Z^T Z + \lambda I)^{-1}
+$$ Confidence interval for Ridge Regression is calculated using the Students-t approximation method where t-Statistics is,
+
+$$
+t_j = \frac{\hat{\beta}_{\text{ridge}, j}}{\hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j})},
+$$ where, $\hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j})$ is the standard error of the j-th coefficient. Hence, the j-th confidence interval is calculated using the following formula, $$
+\hat{\beta}_{\text{ridge}, j} \pm t_{\alpha/2, n-p} \cdot \hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j}),
+$$ here, $t_{\alpha/2, n-p}$ is the critical value of the student's t-distribution with $n-p$ degrees of freedom.
 
 ## Ridge Regression Parameters
 
@@ -84,35 +92,37 @@ here, $\hat{\sigma}^2 = \frac{\sum_{i=1}^{n} \hat{e}_i^2}{n - p}$
 
 The selected ridge parameters are listed below,
 
-@hocking1976class proposed k to be,
-$$k_1 = \frac{\hat\sigma^2_{} \sum(\hat\alpha_j^2 \lambda_j^2)}{(\sum(\hat\alpha_j^2 \lambda_j))^2}$$
-@hoerl1970ridge suggested k to be, $$ k_2 = \frac{\hat\sigma^2_{}}{\max(\hat\alpha^2)}$$
-@thisted1976ridge recommended k to be, $$k_3 = \frac{(p - 2) \hat{\sigma}^2_{}}{(\sum_{j=1}^{p} \hat{\beta}_{\text{j}})^2}$$
-@hoerl1976ridge suggested k to be, $$k_4 = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$
-@kibria2003performance proposed k to be, $$k_5 = \text{median}\left(\frac{\hat{\sigma}^2_{}}{\hat{\alpha}^2{\text{j}}}\right)$$
-@khalaf2005choosing recommended k to be, $$k_6 = \frac{\lambda_{\text{max}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \hat{\lambda}_{\text{max}} \hat{\alpha}^2_{\text{max}}}$$
-@alkhamisi2006some  k to be, $k_7 = \max(m_j)$ and $k_8 = \text{median}(m_j)$ where, $$m_j = \frac{\lambda_{\text{j}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \lambda_{\text{j}} \hat{\alpha}^2_{\text{j}}}$$
-@schaffer1984higher suggested k to be, $$k_9 = \frac{1}{\hat{\alpha}^2_{\text{max}}}$$
-@asar2014modified advocated for the following k's $$k_{10} = \frac{p^2 \hat{\sigma}^2_{}}{\lambda^2_{\text{max}}\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$
-$$k_{11} = \frac{p^3 \hat{\sigma}^2_{}}{\lambda^3_{\text{max}} \sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$
-$$k_{12} = \frac{p \hat{\sigma}^2_{}}{\lambda_{\text{max}}^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$
-$$k_{13} = \frac{p^2 \hat{\sigma}^2_{}}{\left(\sum_{j=1}^{p} \sqrt{\lambda}\right)^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$
-@nomura1988almost suggested \* check if correct $$k_{14} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{1 + (1 + \lambda \sqrt{\frac{\hat{\alpha}^2_{\text{j}}}{\hat{\sigma}^2_{}}})} \right)}$$
-@dorugade2014new advocated for the following k's $$k_{15} = \text{median}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$
-$$k_{16} = \text{harmonic.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$
-$$k_{17} = \text{geometric.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$
-@batah2009ridge proposed the k to be, $$k_{18} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{\sqrt{\frac{\hat{\alpha}^4_{\text{j}} \lambda^2_{\text{j}}}{4 \hat{\sigma}^4_{}} + \frac{6 \hat{\alpha}^2  \lambda_{\text{j}}}{\hat{\sigma}^2_{}}} - \frac{\hat{\alpha}^2_{\text{j}} \lambda_{\text{j}}}{2 \hat{\sigma}^2_{}}} \right)}$$ )
+@hocking1976class proposed k to be, $$k_1 = \frac{\hat\sigma^2_{} \sum(\hat\alpha_j^2 \lambda_j^2)}{(\sum(\hat\alpha_j^2 \lambda_j))^2}$$ @hoerl1970ridge suggested k to be, $$ k_2 = \frac{\hat\sigma^2_{}}{\max(\hat\alpha^2)}$$ @thisted1976ridge recommended k to be, $$k_3 = \frac{(p - 2) \hat{\sigma}^2_{}}{(\sum_{j=1}^{p} \hat{\beta}_{\text{j}})^2}$$ @hoerl1976ridge suggested k to be, $$k_4 = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$ @kibria2003performance proposed k to be, $$k_5 = \text{median}\left(\frac{\hat{\sigma}^2_{}}{\hat{\alpha}^2{\text{j}}}\right)$$ @khalaf2005choosing recommended k to be, $$k_6 = \frac{\lambda_{\text{max}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \hat{\lambda}_{\text{max}} \hat{\alpha}^2_{\text{max}}}$$ @alkhamisi2006some k to be, $k_7 = \max(m_j)$ and $k_8 = \text{median}(m_j)$ where, $$m_j = \frac{\lambda_{\text{j}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \lambda_{\text{j}} \hat{\alpha}^2_{\text{j}}}$$ @schaffer1984higher suggested k to be, $$k_9 = \frac{1}{\hat{\alpha}^2_{\text{max}}}$$ @asar2014modified advocated for the following k's $$k_{10} = \frac{p^2 \hat{\sigma}^2_{}}{\lambda^2_{\text{max}}\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$ $$k_{11} = \frac{p^3 \hat{\sigma}^2_{}}{\lambda^3_{\text{max}} \sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$ $$k_{12} = \frac{p \hat{\sigma}^2_{}}{\lambda_{\text{max}}^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$ $$k_{13} = \frac{p^2 \hat{\sigma}^2_{}}{\left(\sum_{j=1}^{p} \sqrt{\lambda}\right)^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$ @nomura1988almost suggested \* check if correct $$k_{14} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{1 + (1 + \lambda \sqrt{\frac{\hat{\alpha}^2_{\text{j}}}{\hat{\sigma}^2_{}}})} \right)}$$ @dorugade2014new advocated for the following k's $$k_{15} = \text{median}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$ $$k_{16} = \text{harmonic.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$ $$k_{17} = \text{geometric.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$ @batah2009ridge proposed the k to be, $$k_{18} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{\sqrt{\frac{\hat{\alpha}^4_{\text{j}} \lambda^2_{\text{j}}}{4 \hat{\sigma}^4_{}} + \frac{6 \hat{\alpha}^2  \lambda_{\text{j}}}{\hat{\sigma}^2_{}}} - \frac{\hat{\alpha}^2_{\text{j}} \lambda_{\text{j}}}{2 \hat{\sigma}^2_{}}} \right)}$$ )
 
-# Simulation Study
+# Simulation Design
 
+The process of Monte Carlo simulation is used for the simulation study in order to evaluate the performance of the shrinkage parameters. The steps of the procedures is given as follows,
 
-- how data was created
-- how many model were used
-- distribution of data and error
-- complete model
-- n,p, rho, sigma values
-- software used
-- 
+1) The independent variables are generated by following the method of @mcdonald1975monte as follows, 
+
+$$
+x_{ij} = \left(1 - \rho^2 \right)^{1/2} w_{ij} + \rho w_{i(p+1)}, \quad j = 1, \dots, p, \quad i = 1, \dots, n
+$$
+here, $w_{ij}$ is the error term $\rho$ is the correlation between two predictors, p is the number of explanatory variables and, n is the number of samples. The number of sample considered for the study are, $n = 30, 100$ and level of collinearity taken are, $\rho = 0.80, 0.85, 0.90, 0.95, 0.99$. 
+
+2) Therefore the observations are derive using the following regression model, 
+$$
+y_i = \beta_1 x_{i1} + \dots + \beta_p x_{ip} + \epsilon_i, \quad i = 1, \dots, n
+$$
+3) The error term are generated from pseudo-random independent standard normal numbers with mean zero and unit variance.
+
+*** needs to be edited 
+
+4) values of s
+
+5) number of iteration
+
+6) calculating of confidence interval
+
+7) calculation of coverage probability
+
+   software used **** needs to be edited
+   
 
 # Application
 
