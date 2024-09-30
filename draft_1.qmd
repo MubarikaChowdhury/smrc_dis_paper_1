@@ -1,9 +1,9 @@
 ---
 title: "Comparison of Confidence Interval in the OLS and Ridge Linear Regression Model: A Comparative study via Simulation"
-format: #docx
-    tandf-pdf:
-      keep-tex: true  
-    tandf-html: default
+format: docx
+    # tandf-pdf:
+    #   keep-tex: true  
+    # tandf-html: default
 author:
   - name: Sultana Mubarika Rahman Chowdhury
     affiliations:
@@ -42,15 +42,15 @@ bibliography: bibliography.bib
 
 # Introduction
 
-Multiple linear regression maps the relationship between two or more predictors and dependent variable to a linear equation. The aim is to predict the response variable using the independent variables. If X is a n×p full rank matrix of predictors and Y is a n × 1 vector of response variables the multiple linear regression can be explained as, $$Y = X \beta + \epsilon,  $$ {#eq-test} where, $\beta$ is an p × 1 unknown regression paramaters and $\epsilon$ is the n × 1 vector of error with mean zero and equal variance.Ordinary Least Square (OLS) method is commonly used to estimate the unknown regression parameter. The OLS estimate in case of linear regression model is defined as follows, $$\hat{\beta} = (X^T X)^{-1} X^T y.$$ {#eq-1}
+Multiple linear regression maps the relationship between two or more predictors and dependent variable to a linear equation. The aim is to predict the response variable using the independent variables. Ordinary Least Square (OLS) method is commonly used to estimate the unknown regression parameter. One of the key assumption of the widely used multiple linear regression model is that the predictors need to be independent of each other. Violating the assumption of independence results in an issue known as multicollinearity. Multicollinearity, originally identified by @frisch1934statistical, is the state in which two or more independent variables show a strong correlation with one another. It causes standard error of the OLS estimator to increase resulting in wide confidence intervals and less reliable results. Identifying and interpreting significant predictors also becomes difficult [@saleh2019theory]. Increasing the sample size, eliminating the highly correlated variables, Principal component analysis are some of the ways to avoid multicollinearity but with the risk of losing either valuable information or interpretability. As the field of study progressed, researchers developed a number of methods that outperforms OLS in presence of multicollinearity in data by introducing bias to the estimator to gain smaller variance. Ridge regression [@hoerl1970ridge], Lasso [@tibshirani1996regression], Stein estimator [@stein1956inadmissibility], Modified ridge regression, Liu estimator [@liu1993new], Kibria-Lukman estimator [@kibria2020new] are some of them. Among these, ridge regression has become one of the most popular methods for dealing with multicollinearity, providing a robust substitute for OLS.
 
-One of the key assumption of the widely used multiple linear regression model is that the predictors need to be independent of each other. Violating the assumption of independence results in an issue known as multicollinearity. Multicollinearity, originally identified by @frisch1934statistical, is the state in which two or more independent variables show a strong correlation with one another. It causes standard error of the OLS estimator to increase resulting in wide confidence intervals and less reliable results. Identifying and interpreting significant predictors also becomes difficult [@saleh2019theory]. Increasing the sample size, eliminating the highly correlated variables, Principal component analysis are some of the ways to avoid multicollinearity but with the risk of losing either valuable information or interpretability. As the field of study progressed, researchers developed a number of methods that outperforms OLS in presence of multicollinearity in data by introducing bias to the estimator to gain smaller variance. Ridge regression [@hoerl1970ridge], Lasso [@tibshirani1996regression], Stein estimator [@stein1956inadmissibility], Modified ridge regression, Liu estimator [@liu1993new], Kibria-Lukman estimator [@kibria2020new] are some of them. Among these, ridge regression has become one of the most popular methods for dealing with multicollinearity, providing a robust substitute for OLS. However, Ridge regression approach requires precise ridge parameter estimation, because the number of parameters, sample size, degree of correlation, and standard error vary greatly in real-world data. As a results numerous ridge parameters estimators has been suggested researchers till date. @mermi2024new in their recent paper presented and compared a total of 366 different ridge parameters estimators. Typically, the performance of various ridge settings are compared to OLS based on their mean square error (MSE). Nonetheless, certain unknown characteristics in the model determines when Ridge Regression estimators outperform Least Squares estimators in terms of MSE [@crivelli1995confidence]. However, that does not tell us how well the corresponding ridge regression model performs in terms of finding out significance of the predictors which is one of the key points in regression analysis.There are two ways by which statistical significance of the independent variables is determined. One is the method of hypothesis testing and the other one is the method of constructing Confidence Interval (CI).
+However, Ridge regression approach requires precise ridge parameter estimation, because the number of parameters, sample size, degree of correlation, and standard error vary greatly in real-world data. As a results numerous ridge parameters estimators has been suggested researchers till date. @mermi2024new in their recent paper presented and compared a total of 366 different ridge parameters estimators. Typically, the performance of various ridge settings are compared to OLS based on their mean square error (MSE). Nonetheless, certain unknown characteristics in the model determines when Ridge Regression estimators outperform Least Squares estimators in terms of MSE [@crivelli1995confidence]. However, that does not tell us how well the corresponding ridge regression model performs in terms of finding out significance of the predictors which is one of the key points in regression analysis.There are two ways by which statistical significance of the independent variables is determined. One is the method of hypothesis testing and the other one is the method of constructing Confidence Interval (CI).
 
-On the basis of power of the hypothesis test, a number of comparative studies have been done for ridge regression with various tuning settings [@halawa2000tests, @cule2011significance, @gokpinar2016study @perez2020some]. Nevertheless, when evaluating regression parameters, confidence intervals are preferable to hypothesis testing because they offer a range of plausible values that represent the accuracy, direction and magnitude of the estimate. They provide a more precise grasp of practical significance based on sample size while avoiding the drawbacks of p-values [@nickerson2000null] . In practical fields such as, medical studies investigators are usually interested in determining the size of difference of a measured outcome between groups, rather than a simple indication of whether or not it is statistically significant [@gardner1986confidence]. Therefore, CI's can be considered as more informative and transparent for making decisions.
+On the basis of power of the hypothesis test, a number of comparative studies have been done for ridge regression with various tuning settings [@halawa2000tests, @cule2011significance, @gokpinar2016study @perez2020some]. Nevertheless, when evaluating regression parameters, CIs are preferable to hypothesis testing because they offer a range of plausible values that represent the accuracy, direction and magnitude of the estimate. They provide a more precise grasp of practical significance based on sample size while avoiding the drawbacks of p-values [@nickerson2000null] . In practical fields such as, medical studies investigators are usually interested in determining the size of difference of a measured outcome between groups, rather than a simple indication of whether or not it is statistically significant [@gardner1986confidence]. Therefore, CI's can be considered as more informative and transparent for making decisions.
 
-The inference for ridge regression based on confidence interval has not received much attention in the statistical literature. The earliest paper found was written by @obenchain1977classical. According to his results, ridge regression is a useful technique for handling multicollinear data without sacrificing the validity of statistical inference based on F and t tests, despite its bias [@obenchain1977classical]. @vinod1987confidence studied four alternative methods to calculate confidence intervals ridge regression estimation. @crivelli1995confidence took into consideration two confidence intervals for the ridge regression parameters.The first is based on the standard normal distribution, while the second is based on the Edgeworth expansion of the standard normal distribution statistic, where the bootstrap concept is used to determine the percentile. A similar comparative study is done by @chaubey2018confidence where they compared confidence intervals constructed by Normal theory method, Percentile method, Studentized-t method, and Bias corrected accelerated method using Bootstarp and Jackknife methodology. @revan2023bootstrap in their most recent published work investigated confidence intervals constructed by standard normal approximation, student-t approximation and bootstrap method for different regularization parameters. Their finding indicate that both mean interval length and the coverage probability is affected by the choice of the shrinkage parameter.
+The inference for ridge regression based on CI has not received much attention in the statistical literature. The earliest paper found was written by @obenchain1977classical. According to his results, ridge regression is a useful technique for handling multicollinear data without sacrificing the validity of statistical inference based on F and t tests, despite its bias [@obenchain1977classical]. @vinod1987confidence studied four alternative methods to calculate CIs ridge regression estimation. @crivelli1995confidence took into consideration two CIs for the ridge regression parameters.The first is based on the standard normal distribution, while the second is based on the Edgeworth expansion of the standard normal distribution statistic, where the bootstrap concept is used to determine the percentile. A similar comparative study is done by @chaubey2018confidence where they compared CIs constructed by Normal theory method, Percentile method, Studentized-t method, and Bias corrected accelerated method using Bootstarp and Jackknife methodology. @revan2023bootstrap in their most recent published work investigated CIs constructed by standard normal approximation, student-t approximation and bootstrap method for different regularization parameters. Their finding indicate that both mean interval length and the coverage probability is affected by the choice of the shrinkage parameter.
 
-This research examines the Confidence Intervals of multiple linear ridge regression settings for a number of shrinkage parameter under identical simulation conditions. The comparison is conducted based on the width of the confidence interval and coverage probability. The research might be useful to evaluate if shrinkage has produced more stable and dependable estimates than ordinary least squares (OLS) regression by evaluating the bias and variance reduction in Ridge Regression. We can also determine which tuning parameter gives a high coverage probability with a comparatively narrow indicating higher precision.
+This research examines the CIs of multiple linear ridge regression settings for a number of shrinkage parameter under identical simulation conditions. The comparison is conducted based on the width of the CI and coverage probability. The research might be useful to evaluate if shrinkage has produced more stable and dependable estimates than ordinary least squares (OLS) regression by evaluating the bias and variance reduction in Ridge Regression. We can also determine which tuning parameter gives a high coverage probability with a comparatively narrow indicating higher precision.
 
 The rest of the paper is organized as follows,
 
@@ -58,76 +58,148 @@ The rest of the paper is organized as follows,
 
 # Statistical Methodology
 
-## Confidence Interval for OLS Estimators
+## Confidence Interval for OLS and Ridge Regression Estimators
 
-The OLS estimator $\hat{\beta}$ is an unbiased estimator of the ${\beta}$. Under the assumptions of the classical linear regression model the OLS estimator $\hat{\beta}$ is calculated by minimizing the sum of square of the residuals. To measure the variability of the estimate across samples the standard error is calculated as follows, $$ \text{SE}(\hat{\beta}) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}},
-$$ {#eq-2} where, $\sigma^2$ is the variance of the error term. Hence the confidence interval for $\hat{\beta}$ is given as, $$ \hat{\beta} \pm t_{\alpha/2, n-k} \cdot \text{SE}(\hat{\beta})
-$$ {#eq-3} where, $t_{\alpha/2, n-k}$ is the critical value for t- distribution with $n - k$ degrees of freedom for $n$ number of samples and $k$ predictors.
+If X is a n×p full rank matrix of predictors and Y is a n × 1 vector of response variables the multiple linear regression can be explained as, $$Y = X \beta + \epsilon,  $$ {#eq-1}
 
-## Confidence Interval for Ridge Regression Estimators
+where, $\beta$ is an p × 1 unknown regression parameters and $\epsilon$ is the n × 1 vector of error with mean zero and equal variance. The OLS estimate ($\hat{\beta}$) is an unbiased estimator of the ${\beta}$. In case of linear regression model is defined as follows, $$\hat{\beta} = (X^{'} X)^{-1} X^{'} y.$$ {#eq-2}
 
-The canonical form of model @eq-1 is written as, $$ y = Z\alpha + \epsilon, $$ {#eq-4} where, $Z = X Q$, $\alpha = Q^T \beta$ assuming $Q$ is a $p \times p$ orthogonal matrix, and $Z^T Z = \Lambda$ is a $p \times p$ diagonal matrix with eigen values ($\lambda_i$) as diagonal elements. The ridge regression estimator with k as the shrinkage parameter proposed by @hoerl1970ridge for $\alpha$ is written as, $$ \hat{\alpha} (k) = (Z^TZ + kI_p)^{-1} Z^Ty = W\hat{\alpha} ;     k \geq 0$$ {#eq-5} where, $W = [I_p + k C^{-1}]^{-1}$ is the ridge regression estimator, $k = diag(k_1, k_2,..., k_p)$ and $I_p$ is a identity matrix of order p. When there is multicollinearity among the regressors, $X^TX$ becomes singular or nearly singular, which means it cannot be inverted. Introducing a small positive number $kI_p$ to the diagonal elements making it always invertible thus it will always have a unique solution. The parameter k is known as the ridge parameter or shrinkage parameter.
+Under the assumptions of the classical linear regression model the OLS estimator $\hat{\beta}$ is calculated by minimizing the sum of square of the residuals. To measure the variability of the estimate across samples the standard error is calculated as follows, $$ \text{SE}(\hat{\beta}) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}},
+$$ {#eq-3} where, $\sigma^2$ is the variance of the error term. Hence, the confidence interval for $\hat{\beta}$ is given as, $$ \hat{\beta} \pm t_{\alpha/2, n-k} \cdot \text{SE}(\hat{\beta})
+$$ {#eq-4} where, $t_{\alpha/2, n-k}$ is the critical value for t- distribution with $n - k$ degrees of freedom for $n$ number of samples and $k$ predictors.
 
-The standard error for Ridge regression is calculated after adjusting for the bias from the regularization parameter, The varinace-covariance matrix of the Ridge Regression estimator is,
+The ridge regression estimator proposed by @hoerl1970ridge introduces a small amount of bias to reduce the standard errors. The estimator is given by,
+
+$$ \hat\beta_{ridge} = (X^{'}X +kI_p)^{-1}X^{'}y: k>0 $$ {#eq-5}
+
+When there is multicollinearity among the regressors, $X^{'}X$ becomes singular or nearly singular, which means it cannot be inverted. Introducing a small positive number $kI_p$ to the diagonal elements making it always invertible thus it will always have a unique solution. The parameter k is known as the ridge parameter or shrinkage parameter.
+
+The standard error for ridge regression is calculated after adjusting for the bias from the regularization parameter, The variance-covariance matrix of the Ridge Regression estimator is,
 
 $$
 \text{Var}(\hat{\beta}_{\text{ridge}}) = \sigma^2 (Z^T Z + \lambda I)^{-1} Z^T Z (Z^T Z + \lambda I)^{-1}
-$$ Confidence interval for Ridge Regression is calculated using the Students-t approximation method where t-Statistics is,
+$$ {#eq-6}
+
+Confidence interval for ridge regression is calculated using the Students-t approximation method where t-statistics is,
 
 $$
 t_j = \frac{\hat{\beta}_{\text{ridge}, j}}{\hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j})},
-$$ where, $\hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j})$ is the standard error of the j-th coefficient. Hence, the j-th confidence interval is calculated using the following formula, $$
-\hat{\beta}_{\text{ridge}, j} \pm t_{\alpha/2, n-p} \cdot \hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j}),
-$$ here, $t_{\alpha/2, n-p}$ is the critical value of the student's t-distribution with $n-p$ degrees of freedom.
+$$ {#eq-7}
 
-## Ridge Regression Parameters
+where, $\hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j})$ is the standard error of the j-th coefficient. Hence, the j-th confidence interval is calculated using the following formula, $$
+\hat{\beta}_{\text{ridge}, j} \pm t_{\alpha/2, n-p} \cdot \hat{\text{SE}}(\hat{\beta}_{\text{ridge}, j}),
+$$ {#eq-8} here, $t_{\alpha/2, n-p}$ is the critical value of the student's t-distribution with $n-p$ degrees of freedom.
+
+## Ridge regression parameters
 
 In ridge regression the shrinkage parameter is estimated from the observed data. We must identify a ridge regression parameter that yields a less biased and consistent regression coefficient and has a smaller MSE value than the OLS estimator. Based on their performance in the MSE comparison with OLS, as reported in the literature, 18 distinct ridge regression parameters are chosen to be investigated in this research. This section gives the explanation and formulas of the parameters used in our simulation study.
 
 In the original paper @hoerl1970ridge suggested a parameter, $$\hat{k_i} = \frac{\hat{\sigma}^2}{\hat{\alpha_i}^2}$$ that minimizes the MSE of $\hat{\alpha}(k)$ defined by,
 
-$$\text{MSE}(\hat{\alpha}(k)) = \sigma^2 \sum_{i=1}^{p} \frac{\lambda_i}{(\lambda_i + \hat{k_i})^2} + \sum_{i=1}^{p} \frac{\hat{k_i}^2 \hat{\alpha_i}^2}{(\lambda_i + \hat{k_i})^2}$$ {#eq-7}
+$$
+\text{MSE}(\hat{\alpha}(k)) = \sigma^2 \sum_{i=1}^{p} \frac{\lambda_i}{(\lambda_i + \hat{k_i})^2} + \sum_{i=1}^{p} \frac{\hat{k_i}^2 \hat{\alpha_i}^2}{(\lambda_i + \hat{k_i})^2}
+$$
 
 here, $\hat{\sigma}^2 = \frac{\sum_{i=1}^{n} \hat{e}_i^2}{n - p}$
 
 The selected ridge parameters are listed below,
 
-@hocking1976class proposed k to be, $$k_1 = \frac{\hat\sigma^2_{} \sum(\hat\alpha_j^2 \lambda_j^2)}{(\sum(\hat\alpha_j^2 \lambda_j))^2}$$ @hoerl1970ridge suggested k to be, $$ k_2 = \frac{\hat\sigma^2_{}}{\max(\hat\alpha^2)}$$ @thisted1976ridge recommended k to be, $$k_3 = \frac{(p - 2) \hat{\sigma}^2_{}}{(\sum_{j=1}^{p} \hat{\beta}_{\text{j}})^2}$$ @hoerl1976ridge suggested k to be, $$k_4 = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$ @kibria2003performance proposed k to be, $$k_5 = \text{median}\left(\frac{\hat{\sigma}^2_{}}{\hat{\alpha}^2{\text{j}}}\right)$$ @khalaf2005choosing recommended k to be, $$k_6 = \frac{\lambda_{\text{max}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \hat{\lambda}_{\text{max}} \hat{\alpha}^2_{\text{max}}}$$ @alkhamisi2006some k to be, $k_7 = \max(m_j)$ and $k_8 = \text{median}(m_j)$ where, $$m_j = \frac{\lambda_{\text{j}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \lambda_{\text{j}} \hat{\alpha}^2_{\text{j}}}$$ @schaffer1984higher suggested k to be, $$k_9 = \frac{1}{\hat{\alpha}^2_{\text{max}}}$$ @asar2014modified advocated for the following k's $$k_{10} = \frac{p^2 \hat{\sigma}^2_{}}{\lambda^2_{\text{max}}\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$ $$k_{11} = \frac{p^3 \hat{\sigma}^2_{}}{\lambda^3_{\text{max}} \sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}$$ $$k_{12} = \frac{p \hat{\sigma}^2_{}}{\lambda_{\text{max}}^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$ $$k_{13} = \frac{p^2 \hat{\sigma}^2_{}}{\left(\sum_{j=1}^{p} \sqrt{\lambda}\right)^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}$$ @nomura1988almost suggested \* check if correct $$k_{14} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{1 + (1 + \lambda \sqrt{\frac{\hat{\alpha}^2_{\text{j}}}{\hat{\sigma}^2_{}}})} \right)}$$ @dorugade2014new advocated for the following k's $$k_{15} = \text{median}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$ $$k_{16} = \text{harmonic.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$ $$k_{17} = \text{geometric.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)$$ @batah2009ridge proposed the k to be, $$k_{18} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{\sqrt{\frac{\hat{\alpha}^4_{\text{j}} \lambda^2_{\text{j}}}{4 \hat{\sigma}^4_{}} + \frac{6 \hat{\alpha}^2  \lambda_{\text{j}}}{\hat{\sigma}^2_{}}} - \frac{\hat{\alpha}^2_{\text{j}} \lambda_{\text{j}}}{2 \hat{\sigma}^2_{}}} \right)}$$ )
+@hocking1976class proposed k to be,\
+$$
+k_1 = \frac{\hat\sigma^2_{} \sum(\hat\alpha_j^2 \lambda_j^2)}{(\sum(\hat\alpha_j^2 \lambda_j))^2}
+$$ @hoerl1970ridge suggested k to be, $$ 
+k_2 = \frac{\hat\sigma^2_{}}{\max(\hat\alpha^2)}
+$$ @thisted1976ridge recommended k to be,$$
+k_3 = \frac{(p - 2) \hat{\sigma}^2_{}}{(\sum_{j=1}^{p} \hat{\beta}_{\text{j}})^2}
+$$ @hoerl1976ridge suggested k to be, $$
+k_4 = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}
+$$ @kibria2003performance proposed k to be, $$
+k_5 = \text{median}\left(\frac{\hat{\sigma}^2_{}}{\hat{\alpha}^2{\text{j}}}\right)
+$$ @khalaf2005choosing recommended k to be, $$
+k_6 = \frac{\lambda_{\text{max}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \hat{\lambda}_{\text{max}} \hat{\alpha}^2_{\text{max}}}
+$$ @alkhamisi2006some k to be, $k_7 = \max(m_j)$ and $k_8 = \text{median}(m_j)$ where, $$
+m_j = \frac{\lambda_{\text{j}} \hat{\sigma}^2_{}}{(n - p) \hat{\sigma}^2_{} + \lambda_{\text{j}} \hat{\alpha}^2_{\text{j}}}
+$$ @schaffer1984higher suggested k to be, $$
+k_9 = \frac{1}{\hat{\alpha}^2_{\text{max}}}
+$$ @asar2014modified advocated for the following k's $$
+k_{10} = \frac{p^2 \hat{\sigma}^2_{}}{\lambda^2_{\text{max}}\sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}
+$$ $$
+k_{11} = \frac{p^3 \hat{\sigma}^2_{}}{\lambda^3_{\text{max}} \sum_{j=1}^{p} (\hat{\alpha}^2_{\text{j}})}
+$$ $$
+k_{12} = \frac{p \hat{\sigma}^2_{}}{\lambda_{\text{max}}^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}
+$$ $$
+k_{13} = \frac{p^2 \hat{\sigma}^2_{}}{\left(\sum_{j=1}^{p} \sqrt{\lambda}\right)^{1/3} \sum_{j=1}^{p}(\hat{\alpha}^2_{\text{j}})}
+$$ @nomura1988almost suggested \* check if correct
 
-@chandnew proposed the following k's, $$\hat{k}_{19} = \hat{\sigma} p \left(1 + \frac{p}{n} \right)$$,
+$$
+k_{14} = \frac{p \hat{\sigma}^2_{}}{\sum_{j=1}^{p} \left( \frac{\hat{\alpha}^2_{\text{j}}}{1 + (1 + \lambda \sqrt{\frac{\hat{\alpha}^2_{\text{j}}}{\hat{\sigma}^2_{}}})} \right)}
+$$ @dorugade2014new advocated for the following k's $$
+k_{15} = \text{median}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)
+$$ $$
+k_{16} = \text{harmonic.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)
+$$ $$
+k_{17} = \text{geometric.mean}\left(\frac{2 \hat{\sigma}^2_{}}{\lambda_{\text{max}} \hat{\alpha}^2_{\text{j}}}\right)
+$$ @chandnew proposed the following k's, $$
+\hat{k}_{18} = \hat{\sigma} p \left(1 + \frac{p}{n} \right)
+$$,
 
-  $$\hat{k}_{20} = \hat{\sigma} \times \max \left( p \left(1 + \frac{p}{n} \right), p^{\left(1 + \frac{1}{p}\right)} \right)$$
-
+$$
+\hat{k}_{19} = \hat{\sigma} \times \max \left( p ^\left(1 + \frac{p}{n} \right), p^{\left(1 + \frac{1}{p}\right)} \right)
+$$
 
 # Simulation Design
 
-The process of Monte Carlo simulation is used for the simulation study in order to evaluate the performance of the shrinkage parameters. The steps of the procedures is given as follows,
+The process of Monte Carlo simulation is used for the designsimulation study in order to evaluate the performance of the shrinkage parameters. The steps of the procedures is given as follows,
 
 1)  The independent variables are generated by following the method of @mcdonald1975monte as follows,
 
 $$
 x_{ij} = \left(1 - \rho^2 \right)^{1/2} w_{ij} + \rho w_{i(p+1)}, \quad j = 1, \dots, p, \quad i = 1, \dots, n
-$$ here, $w_{ij}$ is the error term $\rho$ is the correlation between two predictors, p is the number of explanatory variables and, n is the number of samples. The number of sample considered for the study are, $n = 30, 100$ and level of collinearity taken are, $\rho = 0.80, 0.85, 0.90, 0.95, 0.99$.
+$$ here, $w_{ij}$ is the error term $\rho$ is the correlation between two predictors, p is the number of explanatory variables and, n is the number of samples. Eigen values $(\lambda_1, \lambda_2, ... \lambda_p)$ and corresponding eigen vectors of matrix $X^{'}X$ are computed.
 
-2)  Therefore the observations are derive using the following regression model, $$
-    y_i = \beta_1 x_{i1} + \dots + \beta_p x_{ip} + \epsilon_i, \quad i = 1, \dots, n
+3)  The error term $\epsilon_i$ are generated from pseudo-random independent standard normal numbers with mean zero and $\sigma^2$ variance.
+
+4)  The final observations were derived by using the following equation,
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip} + \epsilon_i, \quad i = 1, \dots, n
+$$ here without loss of generality the intercept is assumed to be zero in @eq-7. The values of $\beta$ are chosen in a way that $\beta^{'}\beta = 1$
+
+6)  The selected 19 shrinkage parameters are then calculated using the formulas in the previous section.
+
+7)  For each one of the 19 shrinkage parameters OLS estimator and ridge regression estimator is then calculated along with the 95% confidence interval width using equations @eq-2, @eq-4, @eq-5, @eq-8.
+
+8)  The simulation process is iterated 5000 times for each model specification of sample size , $n$ = 30, 50, 100, level of collinearity , $\rho$ = 0.60, 0.80, 0.85, 0.90, 0.95, 0.99 and $\sigma^2$ = 1, 3, 5, 10.
+
+9)  Estimated mean square error for each of the 19 k-parameters is calculated by taking an average of 5000 simulation using the following formula, $$
+    MSE(\hat{\beta}) = \frac{1}{5000} \sum_{i=1}^{5000} (\hat{\beta_i} - \beta_i)' (\hat{\beta_i} - \beta_i),
     $$
-3)  The error term are generated from pseudo-random independent standard normal numbers with mean zero and unit variance.
 
-\*\*\* needs to be edited
+10) The average confidence interval(CI) width and coverage probability(CP) for each shrinkage parameter are calculated by the formula as follows,
 
-4)  values of s
+$$
+CI width = \frac{\sum_{i=1}^{5000} (\hat{\beta}_U - \hat{\beta}_L)}{5000},
+$$
+$$
+CP = \frac{\#(\hat{\beta}_L < \beta < \hat{\beta}_U)}{5000},
+$$
+All computations are performed with the R Statistical Software (v4.4.0; @r_soft).
 
-5)  number of iteration
+***** explain something about the tables
 
-6)  calculating of confidence interval
-
-7)  calculation of coverage probability
-
-    software used \*\*\*\* needs to be edited
+# Results
 
 # Application
 
 # Discussion and Conclusion
+
+Extra:
+
+The canonical form of model @eq-1 is written as, $$ y = Z\alpha + \epsilon, $$ where, $Z = X Q$, $\alpha = (\alpha_1, \alpha_2, ..., \alpha_p) = Q^T \beta$ assuming $Q$ is a $p \times p$ orthogonal matrix such that $Q^{'}Q = I_p$, and $Q^{'}X^{'}XQ = \Lambda$, where $\Lambda =diag(\lambda_1, \lambda_2, ..., \lambda_p)$ is the orthogonal matrix that consists of the eigen values of $X^{'}X$.
+
+Then the OLS estimator is canonical form is given below,
+
+$$ \hat\alpha_{OLS} = (Z^{'}Z)^{-1}Z{'}y $$
+
+The ridge regression estimator with k as the shrinkage parameter proposed by @hoerl1970ridge for $\alpha$ is written as, $$ \hat{\alpha} (k) = (Z^TZ + kI_p)^{-1} Z^Ty = W\hat{\alpha} ;     k \geq 0$$ where, $W = [I_p + k C^{-1}]^{-1}$ is the ridge regression estimator, $k = diag(k_1, k_2,..., k_p)$ and $I_p$ is a identity matrix of order p.
 
 # Bibliography
