@@ -1,0 +1,295 @@
+---
+title: "plots"
+format: html
+editor: visual
+---
+# Plot 1 
+
+```{r}
+
+# Load necessary libraries
+if (!require(ggplot2)) install.packages("ggplot2")
+if (!require(gridExtra)) install.packages("gridExtra")
+if (!require(reshape2)) install.packages("reshape2")
+if (!require(gtable)) install.packages("gtable")  # Required for gtable_filter
+if (!require(grid)) install.packages("grid")
+
+library(ggplot2)
+library(gridExtra)
+library(reshape2)
+library(gtable)
+library(grid)
+
+# Create the data frame based on Table 1 (MSE values)
+data <- data.frame(
+  rho = c(0.60, 0.80, 0.85, 0.90, 0.95, 0.99),
+  OLS = c(0.19, 0.359, 0.479, 0.73, 1.521, 9.75),
+  k1 = c(0.214, 0.412, 0.518, 0.675, 0.941, 8.486),
+  k2 = c(0.207, 0.376, 0.474, 0.648, 0.875, 38.301),
+  k3 = c(0.283, 0.494, 0.58, 0.687, 0.825, 1.543),
+  k4 = c(0.237, 0.401, 0.483, 0.612, 0.904, 21.909),
+  k5 = c(0.598, 0.697, 0.734, 0.79, 0.909, 9.19),
+  k6 = c(0.202, 0.38, 0.494, 0.708, 1.329, 72.98),
+  k7 = c(0.174, 0.314, 0.396, 0.524, 0.737, 1.877),
+  k8 = c(0.176, 0.324, 0.428, 0.642, 1.309, 62.724),
+  k9 = c(0.207, 0.375, 0.473, 0.648, 1.107, 67.02),
+  k10 = c(0.19, 0.359, 0.479, 0.73, 1.52, 75.52),
+  k11 = c(0.19, 0.359, 0.479, 0.73, 1.521, 75.668),
+  k12 = c(0.192, 0.361, 0.481, 0.714, 1.439, 67.185),
+  k13 = c(0.216, 0.383, 0.473, 0.618, 0.946, 22.87),
+  k14 = c(0.6, 0.64, 0.658, 0.689, 0.77, 8.675),
+  k15 = c(0.218, 0.363, 0.458, 0.644, 1.187, 48.062),
+  k16 = c(0.191, 0.36, 0.478, 0.719, 1.464, 69.634),
+  k17 = c(0.2, 0.35, 0.447, 0.63, 1.134, 37.093),
+  k18 = c(0.191, 0.34, 0.423, 0.552, 0.758, 1.285),
+  k19 = c(0.191, 0.34, 0.423, 0.552, 0.758, 1.285)
+)
+
+# Reshape the data to long format for ggplot
+data_long <- melt(data, id.vars = 'rho', variable.name = 'Estimator', value.name = 'MSE')
+
+# Create the grouped bar plot
+mse_plot_n30_p3 <-ggplot(data_long, aes(x = Estimator, y = MSE, fill = factor(rho))) +
+  geom_bar(stat = "identity", position = "dodge") +  # Group bars by rho
+  scale_fill_brewer(palette = "Set3") +  # Use a distinct color palette
+  labs(title = "MSE (n = 30, p = 3)",
+       x = "Estimator", y = "Mean Squared Error (MSE)", fill = expression(rho)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),  
+        axis.title = element_text(size = 10),
+        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
+
+# plot for coverage probability n = 30, p = 3 , s = 1
+
+# Create the data frame based on Table 2 (Coverage Probability values)
+data <- data.frame(
+  rho = c(0.60, 0.80, 0.85, 0.90, 0.95, 0.99),
+  OLS = c(0.953, 0.958, 0.957, 0.956, 0.953, 0.953),
+  k1 = c(0.867, 0.686, 0.591, 0.472, 0.333, 0.179),
+  k2 = c(0.887, 0.793, 0.752, 0.697, 0.639, 0.711),
+  k3 = c(0.733, 0.454, 0.436, 0.25, 0.133, 0.024),
+  k4 = c(0.788, 0.649, 0.603, 0.546, 0.483, 0.489),
+  k5 = c(0.202, 0.174, 0.177, 0.181, 0.197, 0.197),
+  k6 = c(0.916, 0.852, 0.814, 0.75, 0.676, 0.797),
+  k7 = c(0.916, 0.817, 0.744, 0.619, 0.336, 0.003),
+  k8 = c(0.953, 0.954, 0.955, 0.955, 0.954, 0.953),
+  k9 = c(0.886, 0.796, 0.754, 0.699, 0.642, 0.711),
+  k10 = c(0.953, 0.957, 0.956, 0.955, 0.953, 0.953),
+  k11 = c(0.953, 0.957, 0.956, 0.956, 0.953, 0.953),
+  k12 = c(0.945, 0.928, 0.914, 0.9, 0.527, 0.9),
+  k13 = c(0.854, 0.726, 0.674, 0.611, 0.502, 0.611),
+  k14 = c(0.05, 0.092, 0.121, 0.164, 0.227, 0.215),
+  k15 = c(0.871, 0.847, 0.832, 0.81, 0.794, 0.933),
+  k16 = c(0.947, 0.935, 0.926, 0.915, 0.941, 0.944),
+  k17 = c(0.91, 0.875, 0.857, 0.826, 0.811, 0.737),
+  k18 = c(0.879, 0.736, 0.65, 0.479, 0.174, 0.737),
+  k19 = c(0.879, 0.736, 0.65, 0.479, 0.174, 0.737)
+)
+
+# Reshape the data to long format for ggplot
+data_long <- melt(data, id.vars = 'rho', variable.name = 'Estimator', value.name = 'CoverageProbability')
+
+# Create the line plot for coverage probability
+coverage_prob_plot_n30_p3 <- ggplot(data_long, aes(x = rho, y = CoverageProbability, color = Estimator)) +
+  geom_point(size = 3) +                            # Add points
+  geom_line(aes(group = Estimator), linetype = "dashed", size = 0.8) +  # Add dashed lines
+  labs(title = "Coverage Probability (n = 30, p = 3)",
+       x = expression(rho), y = "Coverage Probability") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),  
+        axis.title = element_text(size = 10),
+        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
+
+# plot for CI width n = 30, p = 3 , s = 1
+
+
+
+# Create the data frame based on the provided table (Table 3)
+data <- data.frame(
+  rho = c(0.60, 0.80, 0.85, 0.90, 0.95, 0.99),
+  OLS = c(0.923, 1.365, 1.627, 2.089, 3.189, 8.121),
+  k1 = c(0.806, 0.912, 0.926, 0.922, 0.895, 0.878),
+  k2 = c(0.823, 1.042, 1.145, 1.308, 1.675, 3.451),
+  k3 = c(0.677, 0.641, 0.608, 0.551, 0.454, 0.309),
+  k4 = c(0.724, 0.838, 0.889, 0.931, 1.163, 7.252),
+  k5 = c(0.39, 0.427, 0.451, 0.492, 0.592, 0.935),
+  k6 = c(0.861, 1.147, 1.29, 1.515, 2.035, 3.483),
+  k7 = c(0.782, 0.906, 0.94, 0.956, 0.586, 2.331),
+  k8 = c(0.88, 1.275, 1.158, 1.923, 2.902, 2.633),
+  k9 = c(0.827, 1.052, 1.158, 1.923, 2.699, 2.635),
+  k10 = c(0.923, 1.364, 1.535, 2.084, 3.175, 8.052),
+  k11 = c(0.923, 1.364, 1.535, 2.084, 3.175, 8.052),
+  k12 = c(0.907, 1.302, 1.522, 1.893, 2.737, 6.459),
+  k13 = c(0.782, 0.936, 0.998, 1.088, 1.283, 2.271),
+  k14 = c(0.37, 0.413, 0.437, 0.48, 0.591, 1.196),
+  k15 = c(0.807, 1.115, 1.29, 1.572, 2.208, 4.949),
+  k16 = c(0.912, 1.132, 1.517, 1.943, 2.845, 6.623),
+  k17 = c(0.839, 1.15, 1.317, 1.754, 2.175, 4.013),
+  k18 = c(0.732, 0.833, 0.855, 0.854, 0.771, 0.485),
+  k19 = c(0.732, 0.833, 0.855, 0.854, 0.771, 0.485)
+)
+
+# Reshape the data to long format for ggplot
+data_long <- melt(data, id.vars = 'rho', variable.name = 'Estimator', value.name = 'CI_Width')
+
+# Create the grouped bar plot
+ci_width_plot_n30_p3 <- ggplot(data_long, aes(x = Estimator, y = CI_Width, fill = factor(rho))) +
+  geom_bar(stat = "identity", position = "dodge") +  # Group bars by rho
+  scale_fill_brewer(palette = "Set3") +  # Use a distinct color palette
+  labs(title = "Confidence Interval Width (n = 30, p = 3)",
+       x = "Estimator", y = "Confidence Interval Width", fill = expression(rho)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),   axis.title = element_text(size = 10),
+  plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
+
+# Plot for MSE for n = 100, p = 3 , s = 1
+
+
+# Create the data frame based on Table 15 (MSE values)
+data <- data.frame(
+  rho = c(0.60, 0.80, 0.85, 0.90, 0.95, 0.99),
+  OLS = c(0.431, 0.643, 0.768, 0.987, 1.508, 3.841),
+  k1 = c(0.42, 0.584, 0.649, 0.701, 0.673, 1.19),
+  k2 = c(0.421, 0.604, 0.701, 0.845, 1.09, 4.87),
+  k3 = c(0.404, 0.476, 0.475, 0.445, 0.335, 0.403),
+  k4 = c(0.404, 0.549, 0.616, 0.704, 0.831, 3.062),
+  k5 = c(0.195, 0.224, 0.245, 0.281, 0.356, 1.617),
+  k6 = c(0.424, 0.614, 0.718, 0.885, 1.206, 8.694),
+  k7 = c(0.409, 0.557, 0.627, 0.723, 0.838, 2.121),
+  k8 = c(0.426, 0.632, 0.753, 0.966, 1.472, 11.198),
+  k9 = c(0.422, 0.605, 0.702, 0.807, 1.094, 3.733),
+  k10 = c(0.431, 0.643, 0.768, 0.987, 1.508, 3.839),
+  k11 = c(0.431, 0.643, 0.768, 0.987, 1.508, 3.839),
+  k12 = c(0.431, 0.643, 0.768, 0.987, 1.479, 3.597),
+  k13 = c(0.422, 0.606, 0.703, 0.846, 1.082, 1.769),
+  k14 = c(0.188, 0.22, 0.238, 0.268, 0.331, 0.601),
+  k15 = c(0.412, 0.603, 0.713, 0.904, 1.341, 3.123),
+  k16 = c(0.431, 0.642, 0.766, 0.983, 1.487, 3.66),
+  k17 = c(0.423, 0.622, 0.737, 0.931, 1.361, 2.96),
+  k18 = c(0.405, 0.555, 0.627, 0.726, 0.841, 0.685),
+  k19 = c(0.405, 0.555, 0.627, 0.726, 0.841, 0.685)
+)
+
+# Reshape the data to long format for ggplot
+data_long <- melt(data, id.vars = 'rho', variable.name = 'Estimator', value.name = 'MSE')
+
+# Create the grouped bar plot
+mse_plot_n100_p3 <- ggplot(data_long, aes(x = Estimator, y = MSE, fill = factor(rho))) +
+  geom_bar(stat = "identity", position = "dodge") +  # Group bars by rho
+  scale_fill_brewer(palette = "Set3") +  # Use a distinct color palette
+  labs(title = " MSE  (n = 100, p = 3)",
+       x = "Estimator", y = "Mean Squared Error (MSE)", fill = expression(rho)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_text(size = 10),
+        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm")) 
+
+# plot for coverage probability n = 100, p = 3 , s = 1
+
+# Create the data frame based on Table 14
+data <- data.frame(
+  rho = c(0.60, 0.80, 0.85, 0.90, 0.95, 0.99),
+  OLS = c(0.952, 0.955, 0.957, 0.956, 0.955, 0.954),
+  k1 = c(0.938, 0.871, 0.417, 0.671, 0.427, 0.141),
+  k2 = c(0.94, 0.914, 0.676, 0.847, 0.752, 0.606),
+  k3 = c(0.906, 0.636, 0.041, 0.305, 0.109, 0.005),
+  k4 = c(0.901, 0.818, 0.262, 0.709, 0.594, 0.454),
+  k5 = c(0.062, 0.062, 0.0, 0.0, 0.124, 0.191),
+  k6 = c(0.94, 0.921, 0.595, 0.867, 0.781, 0.634),
+  k7 = c(0.941, 0.901, 0.076, 0.818, 0.664, 0.058),
+  k8 = c(0.952, 0.952, 0.952, 0.954, 0.955, 0.954),
+  k9 = c(0.94, 0.914, 0.639, 0.846, 0.755, 0.605),
+  k10 = c(0.952, 0.955, 0.957, 0.956, 0.955, 0.954),
+  k11 = c(0.952, 0.955, 0.957, 0.956, 0.955, 0.954),
+  k12 = c(0.951, 0.955, 0.954, 0.953, 0.951, 0.948),
+  k13 = c(0.942, 0.917, 0.395, 0.852, 0.753, 0.587),
+  k14 = c(0, 0, 0.004, 0.005, 0.046, 0.215),
+  k15 = c(0.906, 0.905, 0.942, 0.904, 0.895, 0.872),
+  k16 = c(0.951, 0.954, 0.954, 0.954, 0.944, 0.944),
+  k17 = c(0.939, 0.936, 0.931, 0.927, 0.908, 0.879),
+  k18 = c(0.934, 0.9, 0.879, 0.826, 0.671, 0.042),
+  k19 = c(0.934, 0.9, 0.879, 0.826, 0.671, 0.042)
+)
+
+# Reshape the data to long format for ggplot
+data_long <- melt(data, id.vars = 'rho', variable.name = 'Estimator', value.name = 'CoverageProbability')
+
+# Create the line plot
+coverage_prob_plot_n100_p3 <-ggplot(data_long, aes(x = rho, y = CoverageProbability, color = Estimator)) +
+  geom_point(size = 3) +                            # Add points
+  geom_line(aes(group = Estimator), linetype = "dashed", size = 0.8) +  # Add dashed lines
+  labs(title = "Coverage Probability (n = 100, p = 3)",
+       x = expression(rho), y = "Coverage Probability") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),  
+        axis.title = element_text(size = 10),
+        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
+
+# plot for CI width n = 100, p = 3 , s = 1
+
+# Create the data frame based on Table 15
+data <- data.frame(
+  rho = c(0.60, 0.80, 0.85, 0.90, 0.95, 0.99),
+  OLS = c(0.431, 0.643, 0.768, 0.987, 1.508, 3.841),
+  k1 = c(0.42, 0.584, 0.649, 0.701, 0.673, 1.19),
+  k2 = c(0.421, 0.604, 0.701, 0.845, 1.09, 4.87),
+  k3 = c(0.404, 0.476, 0.475, 0.445, 0.335, 0.403),
+  k4 = c(0.404, 0.549, 0.616, 0.704, 0.831, 3.062),
+  k5 = c(0.195, 0.224, 0.245, 0.281, 0.356, 1.617),
+  k6 = c(0.424, 0.614, 0.718, 0.885, 1.206, 8.694),
+  k7 = c(0.409, 0.557, 0.627, 0.723, 0.838, 2.121),
+  k8 = c(0.426, 0.632, 0.753, 0.966, 1.472, 11.198),
+  k9 = c(0.422, 0.605, 0.702, 0.807, 1.094, 3.733),
+  k10 = c(0.431, 0.643, 0.768, 0.987, 1.508, 3.839),
+  k11 = c(0.431, 0.643, 0.768, 0.987, 1.508, 3.839),
+  k12 = c(0.431, 0.643, 0.768, 0.987, 1.479, 3.597),
+  k13 = c(0.422, 0.606, 0.703, 0.846, 1.082, 1.769),
+  k14 = c(0.188, 0.22, 0.238, 0.268, 0.331, 0.601),
+  k15 = c(0.412, 0.603, 0.713, 0.904, 1.341, 3.123),
+  k16 = c(0.431, 0.642, 0.766, 0.983, 1.487, 3.66),
+  k17 = c(0.423, 0.622, 0.737, 0.931, 1.361, 2.96),
+  k18 = c(0.405, 0.555, 0.627, 0.726, 0.841, 0.685),
+  k19 = c(0.405, 0.555, 0.627, 0.726, 0.841, 0.685)
+)
+
+# Reshape the data to long format for ggplot
+data_long <- melt(data, id.vars = 'rho', variable.name = 'Estimator', value.name = 'CI_Width')
+
+# Create the grouped bar plot
+ci_width_plot_n100_p3 <- ggplot(data_long, aes(x = Estimator, y = CI_Width, fill = factor(rho))) +
+  geom_bar(stat = "identity", position = "dodge") +  # Group bars by rho
+  scale_fill_brewer(palette = "Set3") +  # Use a distinct color palette
+  labs(title = "Confidence Interval Width (n = 100, p = 3)",
+       x = "Estimator", y = "Confidence Interval Width", fill = expression(rho)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),  
+        axis.title = element_text(size = 10),
+        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
+
+
+# # Now remove the legends from all individual plots
+# mse_plot_n30_p3 <- mse_plot_n30_p3 + theme(legend.position = "left")
+# mse_plot_n100_p3 <- mse_plot_n100_p3 + theme(legend.position = "none")
+# coverage_prob_plot_n30_p3 <- coverage_prob_plot_n30_p3 + theme(legend.position = "none")
+# coverage_prob_plot_n100_p3 <- coverage_prob_plot_n100_p3 + theme(legend.position = "left")
+# ci_width_plot_n30_p3 <- ci_width_plot_n30_p3 + theme(legend.position = "")
+# ci_width_plot_n100_p3 <- ci_width_plot_n100_p3 + theme(legend.position = "none")
+
+# Open a JPEG device to save the plot
+jpeg("final_plot_with_single_legend.jpeg", width = 1800, height = 1600, res = 150)
+
+# Arrange the plots in a 3x2 grid and add the legend separately
+grid.arrange(
+  mse_plot_n30_p3, mse_plot_n100_p3,
+  coverage_prob_plot_n30_p3, coverage_prob_plot_n100_p3,
+  ci_width_plot_n30_p3, ci_width_plot_n100_p3,
+  # Add the legend here as a separate element
+  ncol = 2, nrow = 3,  # One extra row for the legend
+  heights = c(1.3, 1.3, 1.3),
+  widths = c(1.3, 1.3))# The last row height for the legend
+  
+# Close the device to save the plot
+dev.off()
+  
+```
+  
