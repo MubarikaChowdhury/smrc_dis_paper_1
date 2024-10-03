@@ -2,7 +2,7 @@
 title: "Comparison of Confidence Interval in the OLS and Ridge Linear Regression Model: A Comparative study via Simulation"
 format: docx
     # tandf-pdf:
-    #   keep-tex: true  
+    #   keep-tex: true
     # tandf-html: default
 author:
   - name: Sultana Mubarika Rahman Chowdhury
@@ -182,11 +182,53 @@ $$
 $$
 CP = \frac{\#(\hat{\beta}_L < \beta < \hat{\beta}_U)}{5000},
 $$
-All computations are performed with the R Statistical Software (v4.4.0; @r_soft).
 
-***** explain something about the tables
 
-# Results
+A brief summary of the estimated MSE, coverage probability and width of the CI for sample size n = 30, 50, 100 and number of predictors, p = 3, 10 is presented in Table 1 - Table 6. All computations are performed with the R Statistical Software (v4.4.0; @r_soft).
+
+# Simulation Results and Discussion
+
+A shrinkage estimator is considered to perform better overall if the estimated MSE is comparatively lower than the OLS. When it comes to performance based on CIs, a shrinkage estimator that maintains the nominal coverage probability under various conditions but has a narrower CI width is more desirable. The key conclusions obtained from the tables based on these comparison criteria is explained below, 
+
+## Performance based on MSE
+
+
+
+Plot 1: Performance based on MSE
+![](mse_plot.jpeg)
+
+## Performance based on Coverage Probability
+
+Plot 2: Performance based on Coverage Probability
+![](cp_plot.jpeg)
+## Performance based on CI width
+
+Plot 3: Performance based on CI width
+![](ciw_plot.jpeg)
+
+
+## Table 1: MSE results for n = 30, p = 3
+## Table 2: Coverage Probability results for n = 30, p = 3
+## Table 3: Confidence Interval width results for n = 30, p = 3
+## Table 4: MSE results for n = 30, p = 10
+## Table 5: Coverage Probability results for n = 30, p = 10
+## Table 6: Confidence Interval width results for n = 30, p = 10
+
+## Table 7: MSE results for n = 50, p = 3
+## Table 8: Coverage Probability results for n = 50, p = 3
+## Table 9: Confidence Interval width results for n = 50, p = 3
+## Table 10: MSE results for n = 50, p = 10
+## Table 11: Coverage Probability results for n = 50, p = 10
+## Table 12: Confidence Interval width results for n = 50, p = 10
+
+## Table 13: MSE results for n = 100, p = 3
+## Table 14: Coverage Probability results for n = 100, p = 3
+## Table 15: Confidence Interval width results for n = 100, p = 3
+## Table 16: MSE results for n = 100, p = 10
+## Table 17: Coverage Probability results for n = 100, p = 10
+## Table 18: Confidence Interval width results for n = 100, p = 10
+
+
 
 # Application
 

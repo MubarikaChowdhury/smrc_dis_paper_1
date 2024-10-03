@@ -325,7 +325,7 @@ mse_plot <-
 dev.off()
 
 
-jpeg("cp_plot.jpeg", width = 2000, height = 1000, res = 150)
+jpeg("cp_plot.jpeg", width = 2000, height = 800, res = 150)
 
 cp_plot <-
   grid.arrange(
