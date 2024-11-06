@@ -351,3 +351,35 @@ ciw_plot <-
 dev.off()
 ```
   
+  
+  
+## Correlation plot
+
+```{r}
+
+jpeg("cor_plot.jpeg", width = 1800, height = 600, res = 150)
+# Correlation plot
+
+if (!require(bestglm)) install.packages("bestglm")
+library(bestglm)
+mc_df <- mcdonald
+mc_x <- as.matrix(mc_df[1:15])
+
+# Install and load the corrplot package if not already installed
+if (!require(corrplot)) install.packages("corrplot")
+library(corrplot)
+
+# Assuming 'data' is your data frame with numeric variables
+# Calculate the correlation matrix
+correlation_matrix <- cor(mc_x, use = "complete.obs")
+
+# Create a correlation plot with clustering
+corrplot(correlation_matrix, method = "color", order = "hclust",
+         addrect = 2, # Adds rectangles to emphasize clusters
+         tl.col = "black", # Text label color
+         tl.srt = 45, # Rotate text labels
+         col = colorRampPalette(c("blue", "white", "red"))(200))
+dev.off()
+
+```
+
