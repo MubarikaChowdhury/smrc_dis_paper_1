@@ -190,87 +190,78 @@ A shrinkage estimator is considered to perform better overall if the estimated M
 
 ## Performance based on MSE
 
--   which k's perform better
+When sample size is small (Table 1, Table 2), compared to most of the the selected shrinkage parameters OLS has very high MSE, especially when rho is high. Shrinkage parameters k1, k3, k7, k14, k18, k19 perform better (Table 1) in controlling the variance. For example, when $\rho$ = 0.99 ($\sigma^2$ = 1) The MSE of OLS is 8.408, while k1 (@hoerl1970ridge) has 1.658 and k18, k19 proposed by @chandnew has an MSE of 0.992. The performance difference between OLS and regularization parameters gets smaller as sample size increases. OLS produces more reliable predictions on larger datasets, although shrinkage parameters have a competitive advantage when rho is high. Regardless, of the sample size and colliniearity some k's like k10 and k11 do not show a significantly lower MSE than OLS.   
 
+Plot 1: Performance based on MSE ($\sigma = 1$) ![](mse_plot.jpeg) 
 
-
--   relation with n
-
-When sample size is small, compared to most of the the selected shrinkage parameters OLS has very high MSE, especially when rho is high. Shrinkage parameters k1, k3, k7, k14, k18, k19 perform better (Table 1) in controlling the variance. For example, when $\rho$ = 0.99 ($\sigma^2$ = 1) The MSE of OLS is 8.408, while k1 (@hoerl1970ridge) has 1.658 and k18, k19 proposed by @chandnew has an MSE of 0.992. The performance difference between OLS and regularization parameters gets smaller as sample size increases. OLS produces more reliable predictions on larger datasets, although shrinkage parameters have a competitive advantage when rho is high. Regardless, of the sample size and colliniearity some k's like k10 and k11 do not show a significantly lower MSE than OLS.   
-
-Plot 1: Performance based on MSE ![](mse_plot.jpeg) 
-
--   relation with p
-
- When the number of predictors is small, the MSE values for all methods are generally lower, with OLS performing reasonably well, especially in cases of low rho. However, shrinkage methods consistently outperform OLS, particularly when rho is higher.
-
-For instance, when n = 50, p = 3, and rho = 0.85:
-
-OLS has an MSE of 2.281, while k2 has an MSE of 1.283, demonstrating the superior performance of shrinkage parameters in controlling overfitting.
-
-Larger Number of Predictors (p = 10): With a higher number of predictors, the OLS method becomes more prone to overfitting, especially when rho is high. Shrinkage methods, particularly k2, k5, and k6, show substantial reductions in MSE by introducing regularization to counteract overfitting and multicollinearity.
-
-For instance, when n = 50, p = 10, and rho = 0.95:
-
-OLS has a high MSE of 80.548, but k2 reduces this to 41.5, and k6 further reduces it to 24.373.
+With the increase in number of predictor overall the MSE increases for all estimators. Compared to OLS the shrinkage estimator show comparatively small increase in MSE in presence of high collinearity. For most shrinkage parameters, the MSE is quite close to the OLS estimator when the correlation level is 0.60. Nevertheless, as correlation increases, the shrinkage estimator perform better overall. 
 
 
 ## Performance based on Coverage Probability
 
-Plot 2: Performance based on Coverage Probability ![](cp_plot.jpeg) \## Performance based on CI width
+Coverage probabilities tend to stray from the optimum 95% aim for smaller sample numbers, especially as correlation level increases. Regularization parameters k2 and k5 do better at maintaining coverage probability close to 95%. Although for small sample some methods does not show high coverage most likely because of the bias introduced by regularization. In plot 2 the coverage probability of all the parameters are plotted against the correlation level. From the plot we can see that, for larger sample size a coverage probability of shrinkage parameters varies a lot as the correlation level increases. Whereas, OLS maintains optimum coverage probability throughout all conditions.  
 
-Plot 3: Performance based on CI width ![](ciw_plot.jpeg)
+Plot 2: Performance based on Coverage Probability ($\sigma = 1$) ![](cp_plot.jpeg) 
 
-## Overall Comparison MSE vs Coverage Probability
+k8, k9, k10, k11, k12, k15, k16  stands out with persistently higher coverage probability often approaching 0.95 and higher compared to the other k's across various conditions. Among them k8, k10, k11, k16 maintained coverage probability above 0.95 under all conditions. Even under high multicollinearity these shrinkage parameters perform robustly. On the other hand, k14, k18 and k19 does not perform well in terms of coverage probability in situation when large number of predictors and high correlation level. Regularization parameters like k5, k7 and k10 perform reasonably well however are sensitive to the increasing of noise level. 
 
-## Table 1: MSE results for n = 30, p = 3
 
-## Table 2: Coverage Probability results for n = 30, p = 3
+## Performance based on CI width
 
-## Table 3: Confidence Interval width results for n = 30, p = 3
+Most of the shrinkage parameters see a widening of the CI's as number of predictors increase which is an indication of the increasing difficulty in estimating parameters on more complex models. The confidence intervals for the majority of k-values are narrowed by larger sample sizes (e.g., n=50, 100), although the improvement is not consistent for all values. In plot 3 the width of CI of all the parameters are plotted against the correlation level. 
 
-## Table 4: MSE results for n = 30, p = 10
+Plot 3: Performance based on CI width ($\sigma = 1$)
+![](ciw_plot.jpeg)
 
-## Table 5: Coverage Probability results for n = 30, p = 10
+The findings of the CI width show that, under most circumstances, k3, k5, k7, k14, k18 and k19 have the narrower CI width than the other CI's.
 
-## Table 6: Confidence Interval width results for n = 30, p = 10
+## Overall Performance MSE and Coverage Probability
 
-## Table 7: MSE results for n = 50, p = 3
+Among the shrinkage parameters the maintain a consistent coverage probability of 95%, k8 and k16 show the narrower confidence interval regardless of the conditions. These two regularization parameters are consistently meet the criteria of provide considerably lower confidence intervals and maintain a coverage probability of 0.95 or above. K8 performs marginally better than the others in striking a balance between precision and reliability.
 
-## Table 8: Coverage Probability results for n = 50, p = 3
+# Table 1
 
-## Table 9: Confidence Interval width results for n = 50, p = 3
+# Table 2
 
-## Table 10: MSE results for n = 50, p = 10
+# Table 3
 
-## Table 11: Coverage Probability results for n = 50, p = 10
+# Table 4
 
-## Table 12: Confidence Interval width results for n = 50, p = 10
+# Table 5
 
-## Table 13: MSE results for n = 100, p = 3
+# Table 6
 
-## Table 14: Coverage Probability results for n = 100, p = 3
 
-## Table 15: Confidence Interval width results for n = 100, p = 3
-
-## Table 16: MSE results for n = 100, p = 10
-
-## Table 17: Coverage Probability results for n = 100, p = 10
-
-## Table 18: Confidence Interval width results for n = 100, p = 10
 
 # Application
 
+In this section, we analyse the `mcdonald` dataset  available in R under `bestglm` package and has been utilized numerous times for ridge regression research. This data has been created from the 1973 study on pollution done by from McDonald and Schwing. The dataset has a total of 60 observations for 16 variables representing different environmental and demographic factors. A list of the variable names and their details is given in Table 7. 
+
+# Table 7: Variable Description
+
+
+
+
+
+
+Based on the VIF (variance inflation factor) of the predictors it is seen that there are strong evidence of multicollinearity in the data as some of the independent variables have a VIF higher than 10 (Table 8). Furthermore, we calculated the condition number (CN) of the standardized predictors by using the formula, $CN(\kappa) = \frac{\lambda_{\max}}{\lambda_{\min}} = 930.5641$; indicating high multicollinearity between the independent variables.
+ 
+
+# Table 8 : VIF for indenpendent variables
+
+
+Since multicollinearity is present in the data, Ridge regression is more suitable compared to OLS in this situation. For demonstration purpose we choose predictors "NOX" and "HC" as they had high VIF. Table 8 shows the estimated coefficient, CI and CI width of OLS and ridge regression for the shrinkage parameters that had high coverage probability in the simulation.
+
+
+
+# Table 8 : 
+
+
+From the results (Table 8) it can be seen that among the shrinkage parameters which had high coverage probability k8 and k16 produce narrower CI's.
+
+
+
 # Discussion and Conclusion
 
-Extra:
-
-The canonical form of model @eq-1 is written as, $$ y = Z\alpha + \epsilon, $$ where, $Z = X Q$, $\alpha = (\alpha_1, \alpha_2, ..., \alpha_p) = Q^T \beta$ assuming $Q$ is a $p \times p$ orthogonal matrix such that $Q^{'}Q = I_p$, and $Q^{'}X^{'}XQ = \Lambda$, where $\Lambda =diag(\lambda_1, \lambda_2, ..., \lambda_p)$ is the orthogonal matrix that consists of the eigen values of $X^{'}X$.
-
-Then the OLS estimator is canonical form is given below,
-
-$$ \hat\alpha_{OLS} = (Z^{'}Z)^{-1}Z{'}y $$
-
-The ridge regression estimator with k as the shrinkage parameter proposed by @hoerl1970ridge for $\alpha$ is written as, $$ \hat{\alpha} (k) = (Z^TZ + kI_p)^{-1} Z^Ty = W\hat{\alpha} ;     k \geq 0$$ where, $W = [I_p + k C^{-1}]^{-1}$ is the ridge regression estimator, $k = diag(k_1, k_2,..., k_p)$ and $I_p$ is a identity matrix of order p.
 
 # Bibliography

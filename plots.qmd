@@ -360,7 +360,10 @@ dev.off()
 jpeg("cor_plot.jpeg", width = 1800, height = 600, res = 150)
 # Correlation plot
 
-x <- as.matrix(mtcars[2:11])
+if (!require(bestglm)) install.packages("bestglm")
+library(bestglm)
+mc_df <- mcdonald
+mc_x <- as.matrix(mc_df[1:15])
 
 # Install and load the corrplot package if not already installed
 if (!require(corrplot)) install.packages("corrplot")
@@ -368,7 +371,7 @@ library(corrplot)
 
 # Assuming 'data' is your data frame with numeric variables
 # Calculate the correlation matrix
-correlation_matrix <- cor(x, use = "complete.obs")
+correlation_matrix <- cor(mc_x, use = "complete.obs")
 
 # Create a correlation plot with clustering
 corrplot(correlation_matrix, method = "color", order = "hclust",
